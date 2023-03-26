@@ -16,7 +16,7 @@ abrimos una nueva terminal
 
 
 
-istalar otros paquetes necesarios
+istalar otros paquetes necesarios para conectarse a la base de datos en la nube
 \Desktop\CompuSpace>pip install psycopg2
 \Desktop\CompuSpace>pip install dj-database-url
 \Desktop\CompuSpace>pip install gunicorn
