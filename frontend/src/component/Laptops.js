@@ -16,12 +16,11 @@ const todoItems = [
     hdd: "sin HDD",
     grafica: "gtx 1650",
     descripcion: "Disfruta con Victus tus partidas a muchos fps",
-    
     completed: true,
   },
 ];
 
-class App extends Component {
+class LaptopList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,16 +76,8 @@ class App extends Component {
           {item.nombre}
         </span>
         <span>
-          <button
-            className="btn btn-secondary mr-2"
-          >
-            Edit
-          </button>
-          <button
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
+          <button className="btn btn-secondary mr-2">Edit</button>
+          <button className="btn btn-danger">Delete</button>
         </span>
       </li>
     ));
@@ -100,11 +91,7 @@ class App extends Component {
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">
               <div className="mb-4">
-                <button
-                  className="btn btn-primary"
-                >
-                  Add Laptop
-                </button>
+                <button className="btn btn-primary">Add Laptop</button>
               </div>
               {this.renderTabList()}
               <ul className="list-group list-group-flush border-top-0">
@@ -118,4 +105,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default LaptopList;
