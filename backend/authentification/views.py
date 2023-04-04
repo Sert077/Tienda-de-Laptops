@@ -12,7 +12,7 @@ class HomeView(APIView):
     print('--------------------------------------------------')
     print(type(IsAuthenticated))
     def get(self, request):
-        content = {'message': 'Welcome to the JWT Authentification page using React Js and Django!',
+        content = {'message': request.user.username,
                    'is_superuser':request.user.is_superuser,
                    }
         return Response(content)

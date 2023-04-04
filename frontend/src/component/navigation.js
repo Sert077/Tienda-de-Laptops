@@ -14,20 +14,24 @@ export function Navigation() {
   return (
     
     <div>
-    <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">JWT Authentification</Navbar.Brand>
-          <Nav className="me-auto">
-          {isAuth ?
-            <Nav.Link href="/">Home</Nav.Link>
-            : null}
+        <Navbar style={{ backgroundColor: "#243757 " }}>
+          <Navbar.Brand href="/" style={{ color: "white" }}>CompuSpace</Navbar.Brand>
+          <Nav className="mr-auto">
+            {isAuth ? (
+              <>
+                <Nav.Link href="/" style={{ color: "white" }}>Home</Nav.Link>
+                <Nav.Link href="/laptops" style={{ color: "white" }}>Laptops</Nav.Link>
+              </>
+            ) : null}
           </Nav>
-          <Nav>
-          {isAuth ?
-            <Nav.Link href="/logout">Logout</Nav.Link>:
-            <Nav.Link href="/login">Login</Nav.Link>
-          }
+          <Nav className="ml-auto">
+            {isAuth ? (
+              <Nav.Link href="/logout" style={{ color: "white" }}>Logout</Nav.Link>
+            ) : (
+              <Nav.Link href="/login" style={{ color: "white" }}>Login</Nav.Link>
+            )}
           </Nav>
-      </Navbar>
+        </Navbar>
       </div>
   );
 }

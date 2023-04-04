@@ -30,7 +30,7 @@ export const Home = () => {
 
 
     return <div className="form-signin mt-5 text-center">
-        <h3>Hi {message}</h3>
-        {isSuperuser && <p>You are a superuser!</p>}
+        <h3>Hola {message}</h3>
+        {isSuperuser && <p>Eres superuser!</p>}
     </div>
 }
