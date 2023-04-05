@@ -1,0 +1,14 @@
+pip install pipenv
+pipenv shell
+pipenv install django
+pip install pillow
+pipenv install djangorestframework django-cors-headers
+
+Si tienen problemas con las librerias instaldas en VS studio a "view" y command palette y selccionar interprete de pyhton con el q les funcione
+
+Para entrar a la aplicacion desde navagedor ejecutar el comando:
+"nombre de su carpeta donde esta el proyecto" > python manage.py runserver
+
+entrar a la direccion http://127.0.0.1:8000/admin
+usuario: admin
+Contraseña: 1234admin1234
