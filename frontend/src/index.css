@@ -5,6 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+    background-image: url("bloom.jpg");
+    background-position: center center;
+    background-repeat:no-repeat;
+    background-color: #020b1a;
+    background-attachment:local;
+    background-size: 80% 97%;
+    overflow: hidden;
+
+
 }
 
 code {

@@ -2,7 +2,8 @@
 import axios from "axios";
 import {Navigate} from "react-router-dom";
 import {useState} from "react";
-
+import compu from '../imagenes/computadora.png';
+import '../component/estilo.css';
 export const Login = () => {
     const [nombreUsuario, setNombreUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
@@ -31,13 +32,17 @@ export const Login = () => {
     return(
         <div className="Auth-form-container">
         <form className="Auth-form" onSubmit={submit}>
+        <div class="icono">
+          <img src={compu}/>
+        </div>
+          
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Inicio de sesion</h3>
+            <h3 className="Auth-form-title">CompuSpace</h3>
             <div className="form-group mt-3">
-              <label>Nombre de ususario</label>
+            
               <input
                 className="form-control mt-1"
-                placeholder="Ingresar su nombre de usuario"
+                placeholder="Usuario"
                 name='username'
                 type='text'
                 value={nombreUsuario}
@@ -46,20 +51,20 @@ export const Login = () => {
               />
             </div>
             <div className="form-group mt-3">
-              <label>Contraseña</label>
+              
               <input
                 name='password'
                 type="password"
                 className="form-control mt-1"
-                placeholder="Ingresar su contraseña"
+                placeholder="Contraseña"
                 value={contrasena}
                 required
                 onChange={e => setContrasena(e.target.value)}
               />
             </div>
-            <div className="d-grid gap-2 mt-3">
+            <div className="boton">
               <button type="submit" className="btn btn-primary">
-                Login
+                INICIAR SESION
               </button>
             </div>
           </div>
