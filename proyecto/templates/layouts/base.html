@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django projects</title>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/estilo.css' %}">
+        
+
+</head>
+<body>
+  <body>
+    <header>
+        <span>CompuSpace</span>
+        <div class="sesion" style="display: flex;">
+            <span>USUARIO</span>
+            
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" style="color: white;margin-left: 10px;">LOGOUT</a>
+            {% else %}
+            <a href="{% url 'signin' %}"  style="color: white;margin-left: 10px;">LOGIN</a>
+            {% endif %}
+
+        </div>
+    </header>
+    <div class="contenedor1" style="justify-content: center; display: flex;">
+            <nav class="aliniado">
+                <ul >
+
+                    <li>
+                        <a href=""><i class="bi bi-house "></i></a>
+                        <a href="{% url 'index' %}" style="color: white !important">INICIO</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href=""><i class="bi bi-receipt"></i></a>
+                        <a href="{% url 'laptops' %}" style="color: white !important">LAPTOPS</a>
+                    </li>
+                    {% if request.user.is_superuser %}
+                      <li>
+                        <a href=""><i class="bi bi-receipt"></i></a>
+                        <a href="{% url 'registro_laptops' %}" style="color: white !important">REGISTRAR LAPTOPS</a>
+                      </li>
+                    {% endif %}
+                    {% endif %}
+                </ul>
+        </nav>
+        <section class="contenido aliniado">
+          {% block content %}
+          {% endblock %}
+        </section>
+</div>
+    
+<!-- 
+para que se marque cuando pasemos el cursor sobre el -->
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</body>
+  
+</html>
+
