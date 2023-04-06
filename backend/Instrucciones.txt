@@ -1,3 +1,7 @@
+Requerimientos 
+Pyhton 3.xx instalable para windows
+Node.js instalable para windows
+
 Antes de ejecutar la apliacion instalar librerias por cmd 
 \tienda-de-ñaptop>pip install -r requirements.txt
 
