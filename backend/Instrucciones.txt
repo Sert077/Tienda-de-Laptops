@@ -1,3 +1,19 @@
+Antes de ejecutar la apliacion instalar librerias por cmd 
+\tienda-de-ñaptop>pip install -r requirements.txt
+
+una vez instalado para ejecutar el comando desde la carpeta frontend 
+npm install axios@0.21.1
+
+iniciar el servidor
+\backend> python manage.py runserver
+para inciar la aplicacion desde la carpeta frontend
+npm start
+
+usuario: admin
+Contraseña: 1234admin1234
+
+
+//Solo en caso de tener errrores instalar uno por uno las librerias necesasrias//
 pip install pipenv
 pipenv shell
 pipenv install django
