@@ -12,6 +12,7 @@ from django.urls import reverse
 def index(request):
     return render(request, "index.html")
 
+
 # Create your views here.
 def informacion(request):
     return render(request, "informacion.html")
@@ -37,7 +38,10 @@ def laptops(request):
             hdd=request.POST['hdd'],
             grafica=request.POST['grafica'],
             descripcion=request.POST['descripcion'],
-            imagenes=request.POST['imagenes'])
+            imagen_1=request.FILES['imagen_1'],
+            imagen_2=request.FILES['imagen_2'],
+            imagen_3=request.FILES['imagen_3'],
+            imagen_4=request.FILES['imagen_4'])
         print(laptop)
         return redirect("laptops")
 
