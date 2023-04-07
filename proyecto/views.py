@@ -21,7 +21,15 @@ def informacion(request):
 def laptops(request):
     print(request.method)
     if request.method == 'GET':
-        return render(request, "laptops.html")
+        laptop = Registrar_Laptop.objects.get(id=8)
+        laptop1 = str(laptop.imagen_1)
+        cadena_eliminar = 'proyecto'
+        ruta_laptop = laptop1.replace(cadena_eliminar,'')
+        print(ruta_laptop)
+        return render(request, "laptops.html",{
+            'laptop': laptop,
+            'ruta': ruta_laptop
+        })
     else:
         laptop = Registrar_Laptop.objects.create(
             marca=request.POST['marca'],
@@ -74,27 +82,3 @@ def signout(request):
     logout(request)
     return redirect("index")
 
-
-def formulario(request):
-
-    print(request.method)
-    if request.method == 'POST':
-        modelo = request.POST.get('modelo')
-        marca = request.POST.get('marca')
-        nombre = request.POST.get('nombre')
-        stock = request.POST.get('stock')
-        precio = request.POST.get('precio')
-        pantalla = request.POST.get('pantalla')
-        teclado = request.POST.get('teclado')
-        procesador = request.POST.get('procesador')
-        ram = request.POST.get('ram')
-        color = request.POST.get('color')
-        m2 = request.POST.get('m2')
-        hdd = request.POST.get('hdd')
-
-        # Aquí es donde se procesan los datos del formulario.
-        # Por ejemplo, puede guardarlos en la base de datos o hacer cualquier otra acción que desee.
-
-        return HttpResponseRedirect(reverse('formulario'))
-
-    return render(request, 'index.html')
