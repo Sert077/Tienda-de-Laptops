@@ -12,6 +12,10 @@ from django.urls import reverse
 def index(request):
     return render(request, "index.html")
 
+# Create your views here.
+def informacion(request):
+    return render(request, "informacion.html")
+
 
 def laptops(request):
     print(request.method)
