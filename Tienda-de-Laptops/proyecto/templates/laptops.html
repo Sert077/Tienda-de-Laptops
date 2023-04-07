@@ -1,82 +1,19 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<!--
+    {{ ruta }} es donde esta alojado la imagen para luego poder mostrar
+-->
 
-{% extends 'layouts/base.html' %}
+{% for laptop, ruta in laptops_rutas %}
 
-{% load static %}
-
-{% block content %}
-
-<div class="mostrador" id ="mostrador">
-    <div class="fila">
-        <div class="item">
-            <div class="contenedor-foto">
-                <img src="{% static 'imagenes/img1.jpg' %}" width="200px" height="200px"  alt="">
-                <p class="descripcion">Hp Modelo </p>
-                <spam class="precio"> bs 2.000</spam>
-            </div>
-        </div> 
-        <div class="item">
-
-        <div class="contenedor-foto">
-            <img src="{% static 'imagenes/img2.png' %}" width="200px" height="200px"  alt="">
-            <p class="descripcion">Asus Modelo </p>
-            <spam class="precio"> bs 4.100</spam>
-        </div>
-    </div> 
-
-
-
-    <div class="item">
-        <div class="contenedor-foto">
-            <img src="{% static 'imagenes/img3.jpg' %}" width="200px" height="200px"  alt="">
-            <p class="descripcion">Asus modelo</p>
-            <spam class="precio"> bs 5.100</spam>
-        </div>
-    </div> 
-
-    <div class="item">
-        <div class="contenedor-foto">
-            <img src="{% static 'imagenes/img4.jpg' %}" width="200px" height="200px" alt="">
-            <p class="descripcion">Hp modelo</p>
-            <spam class="precio"> bs 3.200</spam>
-        </div>
-    </div> 
-</div> 
-
-
-<div class="fila">
-    <div class="item">
-        <div class="contenedor-foto">
-            <img src="{% static 'imagenes/img5.jpg' %}" width="200px" height="200px"  alt="">
-            <p class="descripcion">Msi  Modelo </p>
-            <spam class="precio"> bs 3.000</spam>
-        </div>
-    </div> 
-<div class="item">
-<div class="contenedor-foto">
-<img src="{% static 'imagenes/img6.jpg' %}" width="200px" height="200px"  alt="">
-<p class="descripcion">Omen Modelo </p>
-<spam class="precio"> bs 3.000</spam>
-</div>
-
-</div> 
-<div class="item">
-<div class="contenedor-foto">
-<img src="{% static 'imagenes/img7.jpg' %}" width="200px" height="200px"  alt="">
-<p class="descripcion">Alien modelo</p>
-<spam class="precio"> bs 9.100</spam>
-</div>
-
-</div> 
-<div class="item">
-<div class="contenedor-foto">
-<img src="{% static 'imagenes/img8.jpg' %}"  width="200px" height="200px"  alt="">
-<p class="descripcion">Asus modelo</p>
-<spam class="precio"> bs 2.200</spam>
-            </div>
-        </div> 
-    </div> 
-</div> 
-{% endblock %}
-
-
-
+<!-- <div class="mostrador" id="mostrador">
+  <div class="fila">
+    <div class="item"> -->
+      <div class="contenedor-foto">
+        <img src="{{ ruta }}" width="200px" height="200px" alt="" />
+        <p class="descripcion">{{ laptop.nombre }}</p>
+        <spam class="precio"> bs {{ laptop.precio }}</spam>
+      </div>
+    <!-- </div>
+  </div>
+</div> -->
+{% endfor %} {% endblock %}
