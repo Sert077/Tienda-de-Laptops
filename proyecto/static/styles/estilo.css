@@ -132,3 +132,15 @@
 .inferior a:hover {
     color: #1b262c;
 }
+
+.contenido {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas con ancho igual */
+    grid-gap: 10px; /* espacio entre los contenedores */
+}
+.contenedor-foto{
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+
+}

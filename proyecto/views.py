@@ -21,14 +21,21 @@ def informacion(request):
 def laptops(request):
     print(request.method)
     if request.method == 'GET':
-        laptop = Registrar_Laptop.objects.get(id=8)
-        laptop1 = str(laptop.imagen_1)
-        cadena_eliminar = 'proyecto'
-        ruta_laptop = laptop1.replace(cadena_eliminar,'')
-        print(ruta_laptop)
+        laptops = Registrar_Laptop.objects.all()
+        #cadena_eliminar = 'proyecto'
+        #ruta_laptop = laptop1.replace(cadena_eliminar,'')
+
+        lista_rutas = []
+        for laptop in laptops:
+            ruta_fallida =  str(laptop.imagen_1)
+            cadena_eliminar = 'proyecto'
+            ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
+            lista_rutas.append(ruta_correcta)
+            print(ruta_correcta)
+        
+        laptops_rutas = zip(laptops, lista_rutas)
         return render(request, "laptops.html",{
-            'laptop': laptop,
-            'ruta': ruta_laptop
+            'laptops_rutas': laptops_rutas
         })
     else:
         laptop = Registrar_Laptop.objects.create(

@@ -1,23 +1,19 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
 <!--
-    <img src="{% static 'imagenes/img1.jpg' %}" width="200px" height="200px"  alt="">
-
-    src="{% static ruta  %}"
+    {{ ruta }} es donde esta alojado la imagen para luego poder mostrar
 -->
 
-<div class="mostrador" id="mostrador">
+{% for laptop, ruta in laptops_rutas %}
+
+<!-- <div class="mostrador" id="mostrador">
   <div class="fila">
-    <div class="item">
+    <div class="item"> -->
       <div class="contenedor-foto">
-        <img
-          src="{{ ruta }}"
-          width="200px"
-          height="200px"
-          alt=""
-        />
+        <img src="{{ ruta }}" width="200px" height="200px" alt="" />
         <p class="descripcion">{{ laptop.nombre }}</p>
         <spam class="precio"> bs {{ laptop.precio }}</spam>
       </div>
-    </div>
-</div>
-{% endblock %}
+    <!-- </div>
+  </div>
+</div> -->
+{% endfor %} {% endblock %}
