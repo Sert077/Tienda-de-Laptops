@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<body>
+    
+    <div id="contenedor">
+        <div id="central">
+            <div id="login">
+                <div class="icono">
+                    <img src="{% static 'imagenes/computadora.png' %}"/>
+                </div>
+                <h5 class="card-title text-center" style="color: rgb(255, 0, 0);">{{ error }}</h5>
+                <div class="titulo">
+                    CompuSpace
+                </div>
+                <form id="loginform" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" id="id1" name="username" placeholder="Usuario" required>
+                        
+                        <input type="password" id="id2" placeholder="Contraseña" name="password" required>
+                        <button type="submit" title="Ingresar" name="Ingresar" onclick="alerta()">INICIAR SESION</button>
+                        <script type="text/javascript">
+                            function alerta(){
+                                let nom=document.getElementById("id1").value;
+                                let pass=document.getElementById("id2").value;
+                                if(nom == "admin" && pass=="1234admin1234"){
+                                    alert("Los datos fueron introducidos correctamente, bienvenido");
+                                }else{
+                                    alert("Los datos del nombre o la contraseña no son correctos");
+                                }
+                            }
+                        </script>
+                        
+                    </div>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+
+
+</body>
+
+{% endblock %}
