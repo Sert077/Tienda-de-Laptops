@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/estilos.css' %}">
+{% block content %}
+
+
+<div class="contenedor-imagenes">
+    <img id="imagen-principal" src="../static/imagenes/alien_2.jpeg" alt="Imagen principal">
+    <div class="contenedor-imagenes-secundarias">
+      <img class="imagen-secundaria" src="../static/imagenes/alien_1.jpeg" alt="Imagen secundaria 1" i>
+      <img class="imagen-secundaria" src="../static/imagenes/alien_3.jpeg" alt="Imagen secundaria 2">
+      <img class="imagen-secundaria" src="../static/imagenes/alien_4.jpeg" alt="Imagen secundaria 3">
+    </div>
+  </div>  
+
+  <script src="{% static 'scripts/app.js' %}"></script>
+{% endblock %}

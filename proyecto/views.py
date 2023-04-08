@@ -17,6 +17,9 @@ def index(request):
 def informacion(request):
     return render(request, "informacion.html")
 
+def informacionLaptop(request):
+    return render(request, "informacionLaptop.html")
+
 
 def laptops(request):
     print(request.method)
