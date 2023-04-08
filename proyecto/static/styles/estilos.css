@@ -42,6 +42,13 @@ li{
     justify-content: center;
     padding: 10px; 
 }
+li:hover{
+    background-color: #797575;
+    width: 135px;
+}
+.sesion a{
+    text-decoration: none;
+}
 a{
     color: white;
     text-decoration: none;
