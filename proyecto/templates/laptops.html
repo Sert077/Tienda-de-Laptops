@@ -9,7 +9,7 @@
   <div class="fila">
     <div class="item"> -->
       <div class="contenedor-foto">
-        <img src="{{ ruta }}" width="200px" height="200px" alt="" />
+        <a href="{% url 'informacionLaptop' %}"><img src="{{ ruta }}" width="200px" height="200px" alt="" /></a>
         <p class="descripcion">{{ laptop.nombre }}</p>
         <spam class="precio"> bs {{ laptop.precio }}</spam>
       </div>
