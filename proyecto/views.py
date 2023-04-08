@@ -7,6 +7,7 @@ from .models import Registrar_Laptop
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 def index(request):
@@ -14,32 +15,52 @@ def index(request):
 
 
 # Create your views here.
-def informacion(request):
-    return render(request, "informacion.html")
 
-def informacionLaptop(request):
-    return render(request, "informacionLaptop.html")
+@login_required
+def informacionLaptop(request, id):
+    try:
+        laptop = get_object_or_404(Registrar_Laptop, id = id, error_message="Laptop no encontrada")
+        cadena_eliminar = 'proyecto'
+        ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
+        ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
+        ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
+        ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
+        return render(request, "informacionLaptop.html",{
+        'laptop': laptop,
+        'ruta_1': ruta_1,
+        'ruta_2': ruta_2,
+        'ruta_3': ruta_3,
+        'ruta_4': ruta_4,
+    })
+    except:
+        return render(request, "403.html", {"mensaje": "El ID no existe en la base de datos."})
+
+
+def error_404(request, exception):
+    return render(request, '403.html', status=404)
 
 
 def laptops(request):
-    print(request.method)
-    if request.method == 'GET':
-        laptops = Registrar_Laptop.objects.all()
-        #cadena_eliminar = 'proyecto'
-        #ruta_laptop = laptop1.replace(cadena_eliminar,'')
-
-        lista_rutas = []
-        for laptop in laptops:
-            ruta_fallida =  str(laptop.imagen_1)
-            cadena_eliminar = 'proyecto'
-            ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
-            lista_rutas.append(ruta_correcta)
-            print(ruta_correcta)
+    laptops = Registrar_Laptop.objects.all()
+    lista_rutas = []
+    for laptop in laptops:
+        ruta_fallida =  str(laptop.imagen_1)
+        cadena_eliminar = 'proyecto'
+        ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
+        lista_rutas.append(ruta_correcta)
+        print(ruta_correcta)
         
-        laptops_rutas = zip(laptops, lista_rutas)
-        return render(request, "laptops.html",{
-            'laptops_rutas': laptops_rutas
-        })
+    laptops_rutas = zip(laptops, lista_rutas)
+    return render(request, "laptops.html",{
+        'laptops_rutas': laptops_rutas
+    })
+        
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='/403/')
+def registro_laptops(request):
+    if request.method == 'GET':
+        return render(request, "registrar_laptops.html")
     else:
         laptop = Registrar_Laptop.objects.create(
             marca=request.POST['marca'],
@@ -63,11 +84,7 @@ def laptops(request):
         messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
         return redirect("laptops")
 
-
-def registro_laptops(request):
-    return render(request, "registrar_laptops.html")
-
-
+@login_required
 def signin(request):
     if request.method == 'GET':
         return render(request, 'login.html')
