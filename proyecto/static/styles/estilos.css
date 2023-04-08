@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0px;
+    font-family: 'Open Sans', sans-serif;
 }
 header{
     display: flex;
@@ -82,7 +83,7 @@ span{
 }
 nav{
     background-color: #314755;
-    width: 15%;
+    width: 10%;
     height: 140vh;
     
    
@@ -98,6 +99,7 @@ ul{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 0;
 }
 li{
     display: flex;
@@ -110,6 +112,7 @@ a{
     color: white;
     text-decoration: none;
     font-size: 20px;
+    justify-content: center;
 }
 i{
     color: white;
