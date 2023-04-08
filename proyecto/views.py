@@ -18,28 +18,24 @@ def index(request):
 
 @login_required
 def informacionLaptop(request, id):
-    try:
-        laptop = get_object_or_404(Registrar_Laptop, id = id, error_message="Laptop no encontrada")
-        cadena_eliminar = 'proyecto'
-        ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
-        ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
-        ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
-        ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
-        return render(request, "informacionLaptop.html",{
+    laptop = Registrar_Laptop.objects.get(id = id)
+    cadena_eliminar = 'proyecto'
+    ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
+    ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
+    ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
+    ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
+    return render(request, "informacionLaptop.html",{
         'laptop': laptop,
         'ruta_1': ruta_1,
         'ruta_2': ruta_2,
         'ruta_3': ruta_3,
         'ruta_4': ruta_4,
     })
-    except:
-        return render(request, "403.html", {"mensaje": "El ID no existe en la base de datos."})
-
 
 def error_404(request, exception):
     return render(request, '403.html', status=404)
 
-
+@login_required
 def laptops(request):
     laptops = Registrar_Laptop.objects.all()
     lista_rutas = []
@@ -59,6 +55,10 @@ def laptops(request):
 
 @user_passes_test(lambda u: u.is_superuser, login_url='/403/')
 def registro_laptops(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'No tienes acceso para registrar laptops')
+        return redirect('403')
+    
     if request.method == 'GET':
         return render(request, "registrar_laptops.html")
     else:
@@ -84,7 +84,7 @@ def registro_laptops(request):
         messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
         return redirect("laptops")
 
-@login_required
+
 def signin(request):
     if request.method == 'GET':
         return render(request, 'login.html')
