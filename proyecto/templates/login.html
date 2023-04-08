@@ -1,10 +1,9 @@
-{% extends 'layouts/base.html' %}
 
 {% load static %}
 
-{% block content %}
+<link rel="stylesheet" href="{% static 'styles/estilo.css' %}">
 
-<body>
+<body class="fondo">
     
     <div id="contenedor">
         <div id="central">
@@ -12,7 +11,7 @@
                 <div class="icono">
                     <img src="{% static 'imagenes/computadora.png' %}"/>
                 </div>
-                <h5 class="card-title text-center" style="color: rgb(255, 0, 0);">{{ error }}</h5>
+                <h5 class="card-title text-center" style="color: red;">{{ error }}</h5>
                 <div class="titulo">
                     CompuSpace
                 </div>
@@ -33,8 +32,7 @@
                                     alert("Los datos del nombre o la contraseña no son correctos");
                                 }
                             }
-                        </script>
-                        
+                            </script>
                     </div>
                 </form>
                 
@@ -43,7 +41,4 @@
         </div>
     </div>
 
-
 </body>
-
-{% endblock %}

@@ -45,4 +45,7 @@ class Registrar_Laptop(models.Model):
     hdd = models.CharField(max_length=10, choices = hardisk)
     grafica = models.CharField(max_length=25)
     descripcion = models.CharField(max_length=1000)
-    imagenes = models.ImageField(upload_to="proyecto/static/imagenes", null=True)
+    imagen_1 = models.ImageField(upload_to="proyecto/static/imagenes", null=True)
+    imagen_2 = models.ImageField(upload_to="proyecto/static/imagenes", null=True)
+    imagen_3  = models.ImageField(upload_to="proyecto/static/imagenes", null=True)
+    imagen_4 = models.ImageField(upload_to="proyecto/static/imagenes", null=True)

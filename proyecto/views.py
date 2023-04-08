@@ -6,14 +6,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Registrar_Laptop
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-import tkinter as tk 
-from tkinter import messagebox
-
 
 
 # Create your views here.
 def index(request):
     return render(request, "index.html")
+
 
 # Create your views here.
 def informacion(request):
@@ -23,7 +21,22 @@ def informacion(request):
 def laptops(request):
     print(request.method)
     if request.method == 'GET':
-        return render(request, "laptops.html")
+        laptops = Registrar_Laptop.objects.all()
+        #cadena_eliminar = 'proyecto'
+        #ruta_laptop = laptop1.replace(cadena_eliminar,'')
+
+        lista_rutas = []
+        for laptop in laptops:
+            ruta_fallida =  str(laptop.imagen_1)
+            cadena_eliminar = 'proyecto'
+            ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
+            lista_rutas.append(ruta_correcta)
+            print(ruta_correcta)
+        
+        laptops_rutas = zip(laptops, lista_rutas)
+        return render(request, "laptops.html",{
+            'laptops_rutas': laptops_rutas
+        })
     else:
         laptop = Registrar_Laptop.objects.create(
             marca=request.POST['marca'],
@@ -40,7 +53,10 @@ def laptops(request):
             hdd=request.POST['hdd'],
             grafica=request.POST['grafica'],
             descripcion=request.POST['descripcion'],
-            imagenes=request.POST['imagenes'])
+            imagen_1=request.FILES['imagen_1'],
+            imagen_2=request.FILES['imagen_2'],
+            imagen_3=request.FILES['imagen_3'],
+            imagen_4=request.FILES['imagen_4'])
         print(laptop)
         return redirect("laptops")
 
@@ -61,7 +77,7 @@ def signin(request):
                 return render(request, 'login.html', {
                     'error':
                     'El nombre de usuario o contraseña son incorrectos'
-            })
+                })
             else:
                 login(request, user)
                 return redirect("index")
@@ -71,30 +87,5 @@ def signin(request):
 
 def signout(request):
     logout(request)
-
     return redirect("index")
 
-
-def formulario(request):
-
-    print(request.method)
-    if request.method == 'POST':
-        modelo = request.POST.get('modelo')
-        marca = request.POST.get('marca')
-        nombre = request.POST.get('nombre')
-        stock = request.POST.get('stock')
-        precio = request.POST.get('precio')
-        pantalla = request.POST.get('pantalla')
-        teclado = request.POST.get('teclado')
-        procesador = request.POST.get('procesador')
-        ram = request.POST.get('ram')
-        color = request.POST.get('color')
-        m2 = request.POST.get('m2')
-        hdd = request.POST.get('hdd')
-
-        # Aquí es donde se procesan los datos del formulario.
-        # Por ejemplo, puede guardarlos en la base de datos o hacer cualquier otra acción que desee.
-
-        return HttpResponseRedirect(reverse('formulario'))
-
-    return render(request, 'index.html')

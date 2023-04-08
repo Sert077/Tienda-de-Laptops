@@ -125,40 +125,19 @@ i{
 .contenido{
 	width: 100%;
     margin-left: 0px;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    display: flex;
 }
 .section{
     width: 60%;
 }
-.mostrador{
-    width: 100%;	
-    transition: 0.5s ease ;
-
-}
-.mostrador .fila{
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 40px;
-}
-.mostrador{
-	padding: 30px;
-height:100% ;
-text-align: center;
-margin: 0 10px;
-cursor: pointer;
-border-radius: 5px;
-transition: 0.3s;
-}
-.mostrador .fila .item {
-	width: 100%;
-}
 
 
+.contenedor-foto {
+    margin: 15px;
+}
 
-.mostrador .fila .item:hover{
+.contenedor-foto:hover{
     background-color: #e6e6e6 ;
-}
-/*
-para que se marque cuando pasemos el cursor sobre el */
-.mostrador .fila .item {
-	width: 100%;
 }
