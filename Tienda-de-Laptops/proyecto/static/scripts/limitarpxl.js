@@ -17,7 +17,7 @@ fileUpload.addEventListener('change', () => {
         alert("La resolucion minima de la imagen debe ser 1080x720");
         return false;
       }
-      alert("Resolucion de imagen correcta :D");
+      alert("Imagen aceptada!");
       return true;
     };
   };})
