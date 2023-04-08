@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Registrar_Laptop
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -57,7 +57,7 @@ def laptops(request):
             imagen_2=request.FILES['imagen_2'],
             imagen_3=request.FILES['imagen_3'],
             imagen_4=request.FILES['imagen_4'])
-        print(laptop)
+        messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
         return redirect("laptops")
 
 
@@ -74,10 +74,8 @@ def signin(request):
             password = request.POST['password']
             user = authenticate(request, username=username, password=password)
             if user is None:
-                return render(request, 'login.html', {
-                    'error':
-                    'El nombre de usuario o contraseña son incorrectos'
-                })
+                messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+                return render(request, 'login.html')
             else:
                 login(request, user)
                 return redirect("index")
