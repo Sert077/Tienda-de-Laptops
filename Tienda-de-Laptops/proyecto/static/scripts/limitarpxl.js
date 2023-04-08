@@ -13,7 +13,7 @@ fileUpload.addEventListener('change', () => {
         height,
         width
       } = image;
-      if (height < 100 || width < 100) {
+      if (height < 1080 || width < 720) {
         alert("La resolucion minima de la imagen debe ser 1080x720");
         return false;
       }
