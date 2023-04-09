@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            Swal.fire({
+                title: "{{ message.tags }}",
+                text: "{{ message }}",
+                icon: "{{ message.tags }}",
+                timer: 3000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                position: 'top-end'
+            });
+        </script>
+    {% endfor %}
+{% endif %}
+
+      {% for laptop, ruta in laptops_rutas %}
+      <div class="contenedor-foto">
+        <a style="color: black; text-decoration: none;" href="{% url 'informacionLaptop' laptop.id %}" class="descripcion">{{ laptop.nombre }}</a>
+        <a href="{% url 'informacionLaptop' laptop.id %}">
+            <img src="{{ ruta }}" width="200px" height="200px" alt="" />
+        </a>
+        <div style="background-color: #DaD5B7;" >
+            <h6 class="descripcion">Marca:{{ laptop.marca }}</h6>
+            <h6 class="descripcion">Modelo: {{ laptop.modelo }}</h6>
+            <h6 class="precio"> bs {{ laptop.precio }}</h6>
+            <h6 class="precio"> Stock: {{ laptop.stock }}</h6>
+        </div>
+
+      </div>
+      {% endfor %} {% endblock %}
+ 
+
