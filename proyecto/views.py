@@ -6,39 +6,61 @@ from django.contrib.auth.decorators import login_required
 from .models import Registrar_Laptop
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 def index(request):
     return render(request, "index.html")
 
-def informacionLaptop(request):
-    return render(request, "informacionLaptop.html")
 
 # Create your views here.
-def informacion(request):
-    return render(request, "informacion.html")
 
+@login_required
+def informacionLaptop(request, id):
+    laptop = Registrar_Laptop.objects.get(id = id)
+    cadena_eliminar = 'proyecto'
+    ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
+    ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
+    ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
+    ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
+    return render(request, "informacionLaptop.html",{
+        'laptop': laptop,
+        'ruta_1': ruta_1,
+        'ruta_2': ruta_2,
+        'ruta_3': ruta_3,
+        'ruta_4': ruta_4,
+    })
 
+def error_404(request, exception):
+    return render(request, '403.html', status=404)
+
+@login_required
 def laptops(request):
-    print(request.method)
-    if request.method == 'GET':
-        laptops = Registrar_Laptop.objects.all()
-        #cadena_eliminar = 'proyecto'
-        #ruta_laptop = laptop1.replace(cadena_eliminar,'')
-
-        lista_rutas = []
-        for laptop in laptops:
-            ruta_fallida =  str(laptop.imagen_1)
-            cadena_eliminar = 'proyecto'
-            ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
-            lista_rutas.append(ruta_correcta)
-            print(ruta_correcta)
+    laptops = Registrar_Laptop.objects.all()
+    lista_rutas = []
+    for laptop in laptops:
+        ruta_fallida =  str(laptop.imagen_1)
+        cadena_eliminar = 'proyecto'
+        ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
+        lista_rutas.append(ruta_correcta)
+        print(ruta_correcta)
         
-        laptops_rutas = zip(laptops, lista_rutas)
-        return render(request, "laptops.html",{
-            'laptops_rutas': laptops_rutas
-        })
+    laptops_rutas = zip(laptops, lista_rutas)
+    return render(request, "laptops.html",{
+        'laptops_rutas': laptops_rutas
+    })
+        
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='/403/')
+def registro_laptops(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'No tienes acceso para registrar laptops')
+        return redirect('403')
+    
+    if request.method == 'GET':
+        return render(request, "registrar_laptops.html")
     else:
         laptop = Registrar_Laptop.objects.create(
             marca=request.POST['marca'],
@@ -59,12 +81,8 @@ def laptops(request):
             imagen_2=request.FILES['imagen_2'],
             imagen_3=request.FILES['imagen_3'],
             imagen_4=request.FILES['imagen_4'])
-        print(laptop)
+        messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
         return redirect("laptops")
-
-
-def registro_laptops(request):
-    return render(request, "registrar_laptops.html")
 
 
 def signin(request):
@@ -76,10 +94,8 @@ def signin(request):
             password = request.POST['password']
             user = authenticate(request, username=username, password=password)
             if user is None:
-                return render(request, 'login.html', {
-                    'error':
-                    'El nombre de usuario o contraseña son incorrectos'
-                })
+                messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+                return render(request, 'login.html')
             else:
                 login(request, user)
                 return redirect("index")

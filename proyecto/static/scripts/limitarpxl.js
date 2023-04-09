@@ -25,4 +25,3 @@ fileUpload.addEventListener('change', () => {
 ()
 
  
-

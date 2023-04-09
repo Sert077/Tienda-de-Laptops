@@ -5,14 +5,14 @@
 
 <div class="well tab-content" style="justify-content: center;margin-left: 50px;">
   <div class="tab-pane active" id="post-object-form">
-    <form method="POST" action="{% url 'laptops' %}" enctype="multipart/form-data" >
+    <form method="POST" action="{% url 'registro_laptops' %}" enctype="multipart/form-data" >
         {% csrf_token %}
       <fieldset>
         <div class="form-group">
             <label class="col-sm-2 control-label"> Modelo </label>
   
             <div class="col-sm-10">
-              <input name="modelo" class="form-control" type="text" value="" required maxlength="20" minlength="3"/>
+              <input name="modelo" class="form-control" type="text" value="" required maxlength="20" minlength="5"/>
             </div>
           </div>
 
@@ -29,7 +29,7 @@
           <label class="col-sm-2 control-label"> Nombre </label>
 
           <div class="col-sm-10">
-            <input name="nombre" class="form-control" type="text" value=""required maxlength="20" minlength="3"  />
+            <input name="nombre" class="form-control" type="text" value=""required maxlength="20" minlength="8"  />
           </div>
         </div>
 
@@ -69,7 +69,7 @@
           <label class="col-sm-2 control-label"> Teclado </label>
 
           <div class="col-sm-10">
-            <input name="teclado" class="form-control" type="text" value="" required maxlength="10" minlength="2"/>
+            <input name="teclado" class="form-control" type="text" value="" required maxlength="10" minlength="5"/>
           </div>
         </div>
 
@@ -200,7 +200,7 @@
             title=""
             data-original-title="Make a POST request on the Todo List resource"
           >
-            GUARDAR
+            ACEPTAR
           </button>
         </div>
       </fieldset>

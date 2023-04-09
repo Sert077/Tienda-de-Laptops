@@ -1,17 +1,82 @@
-{% extends 'layouts/base.html' %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'styles/estilos.css' %}">
+{% extends 'layouts/base.html' %} {% load static %}
+<link rel="stylesheet" href="{% static 'styles/estilos.css' %}" />
 {% block content %}
-
-
+<h1>{{ laptop.nombre }}</h1>
 <div class="contenedor-imagenes">
-    <img id="imagen-principal" src="../static/imagenes/alien_2.jpeg" alt="Imagen principal">
-    <div class="contenedor-imagenes-secundarias">
-      <img class="imagen-secundaria" src="../static/imagenes/alien_1.jpeg" alt="Imagen secundaria 1" i>
-      <img class="imagen-secundaria" src="../static/imagenes/alien_3.jpeg" alt="Imagen secundaria 2">
-      <img class="imagen-secundaria" src="../static/imagenes/alien_4.jpeg" alt="Imagen secundaria 3">
-    </div>
-  </div>  
-
-  <script src="{% static '/scripts/app.js' %}"></script>
+  <img id="imagen-principal" src="{{ ruta_1 }}" alt="Imagen principal" />
+  <div class="contenedor-imagenes-secundarias">
+    <img
+      class="imagen-secundaria"
+      src="{{ ruta_2 }}"
+      alt="Imagen secundaria 1"
+      i
+    />
+    <img
+      class="imagen-secundaria"
+      src="{{ ruta_3 }}"
+      alt="Imagen secundaria 2"
+    />
+    <img
+      class="imagen-secundaria"
+      src="{{ ruta_4 }}"
+      alt="Imagen secundaria 3"
+    />
+  </div>
+</div>
+<h1>{{ laptop.nombre }}</h1>
+  <table>
+    <tr>
+      <th>Marca:</th>
+      <td>{{ laptop.marca }}</td>
+    </tr>
+    <tr>
+      <th>Modelo:</th>
+      <td>{{ laptop.modelo }}</td>
+    </tr>
+    <tr>
+      <th>Stock:</th>
+      <td>{{ laptop.stock }}</td>
+    </tr>
+    <tr>
+      <th>Precio:</th>
+      <td>{{ laptop.precio }}</td>
+    </tr>
+    <tr>
+      <th>Pantalla:</th>
+      <td>{{ laptop.pantalla }}</td>
+    </tr>
+    <tr>
+      <th>Teclado:</th>
+      <td>{{ laptop.teclado }}</td>
+    </tr>
+    <tr>
+      <th>Procesador:</th>
+      <td>{{ laptop.procesador }}</td>
+    </tr>
+    <tr>
+      <th>RAM:</th>
+      <td>{{ laptop.ram }}</td>
+    </tr>
+    <tr>
+      <th>Color:</th>
+      <td>{{ laptop.color }}</td>
+    </tr>
+    <tr>
+      <th>M2:</th>
+      <td>{{ laptop.m2 }}</td>
+    </tr>
+    <tr>
+      <th>HDD:</th>
+      <td>{{ laptop.hdd }}</td>
+    </tr>
+    <tr>
+      <th>Gráfica:</th>
+      <td>{{ laptop.grafica }}</td>
+    </tr>
+    <tr>
+      <th>Descripción:</th>
+      <td>{{ laptop.descripcion }}</td>
+    </tr>
+  </table>
+<script src="{% static 'scripts/app.js' %}"></script>
 {% endblock %}
