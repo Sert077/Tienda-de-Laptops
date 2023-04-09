@@ -1,4 +1,4 @@
-var fileUpload = document.querySelector('input[name="imagen_2"]')
+var fileUpload = document.querySelector('input[name="imagen_1"]')
 var reader = new FileReader();
 fileUpload.addEventListener('change', () => {
   reader.readAsDataURL(fileUpload.files[0]);
@@ -18,7 +18,7 @@ fileUpload.addEventListener('change', () => {
       return true;
     };
   };})
-var fileUpload = document.querySelector('input[name="imagen_1"]')
+var fileUpload = document.querySelector('input[name="imagen_2"]')
 var reader = new FileReader();
 fileUpload.addEventListener('change', () => {
   reader.readAsDataURL(fileUpload.files[0]);
