@@ -1,5 +1,22 @@
 
 {% load static %}
+{% if messages %}
+    {% for message in messages %}
+        <script type="text/javascript">
+            window.onload = function() {
+                Swal.fire({
+                    title: '{{ message }}',
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            };
+        </script>
+    {% endfor %}
+{% endif %}
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
 
 <link rel="stylesheet" href="{% static 'styles/estilo.css' %}">
 
@@ -18,21 +35,11 @@
                 <form id="loginform" method="POST">
                     {% csrf_token %}
                     <div>
-                        <input type="text" id="id1" name="username" placeholder="Usuario" required>
+                            <input type="text" name="username" placeholder="Usuario" required>
                         
-                        <input type="password" id="id2" placeholder="Contraseña" name="password" required>
-                        <button type="submit" title="Ingresar" name="Ingresar" onclick="alerta()">INICIAR SESION</button>
-                        <script type="text/javascript">
-                            function alerta(){
-                                let nom=document.getElementById("id1").value;
-                                let pass=document.getElementById("id2").value;
-                                if(nom == "admin" && pass=="1234admin1234"){
-                                    alert("Los datos fueron introducidos correctamente, bienvenido");
-                                }else{
-                                    alert("Los datos del nombre o la contraseña no son correctos");
-                                }
-                            }
-                            </script>
+                        <input type="password" placeholder="Contraseña" name="password" required>
+                        
+                        <button type="submit" title="Ingresar" name="Ingresar">INICIAR SESION</button>
                     </div>
                 </form>
                 
