@@ -1,29 +1,31 @@
 {% extends 'layouts/base.html' %} {% load static %}
+
 <link rel="stylesheet" href="{% static 'styles/estilos.css' %}" />
 {% block content %}
-<h1>{{ laptop.nombre }}</h1>
-<div class="contenedor-imagenes">
-  <img id="imagen-principal" src="{{ ruta_1 }}" alt="Imagen principal" />
-  <div class="contenedor-imagenes-secundarias">
-    <img
-      class="imagen-secundaria"
-      src="{{ ruta_2 }}"
-      alt="Imagen secundaria 1"
-      i
-    />
-    <img
-      class="imagen-secundaria"
-      src="{{ ruta_3 }}"
-      alt="Imagen secundaria 2"
-    />
-    <img
-      class="imagen-secundaria"
-      src="{{ ruta_4 }}"
-      alt="Imagen secundaria 3"
-    />
+<section class="contenido aliniado">
+  <h1>{{ laptop.nombre }}</h1>
+  <div class="contenedor-imagenes">
+    <img id="imagen-principal" src="{{ ruta_1 }}" alt="Imagen principal" />
+    <div class="contenedor-imagenes-secundarias">
+      <img
+        class="imagen-secundaria"
+        src="{{ ruta_2 }}"
+        alt="Imagen secundaria 1"
+        i
+      />
+      <img
+        class="imagen-secundaria"
+        src="{{ ruta_3 }}"
+        alt="Imagen secundaria 2"
+      />
+      <img
+        class="imagen-secundaria"
+        src="{{ ruta_4 }}"
+        alt="Imagen secundaria 3"
+      />
+    </div>
   </div>
-</div>
-<h1></h1>
+  <h1></h1>
   <table>
     <tr>
       <th>Marca:</th>
@@ -78,5 +80,7 @@
       <td>{{ laptop.descripcion }}</td>
     </tr>
   </table>
+</section>
+
 <script src="{% static 'scripts/app.js' %}"></script>
 {% endblock %}

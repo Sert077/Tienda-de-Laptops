@@ -14,7 +14,7 @@
         </script>
     {% endfor %}
 {% endif %}
-
+<section class="contenido aliniado">
       {% for laptop, ruta in laptops_rutas %}
       <div class="contenedor-foto">
         <a style="color: black; text-decoration: none;" href="{% url 'informacionLaptop' laptop.id %}" class="descripcion">{{ laptop.nombre }}</a>
@@ -40,7 +40,7 @@
     </a>
   </div>
   {% endif %}
-
+</section>
       {% endblock %}
  
 
