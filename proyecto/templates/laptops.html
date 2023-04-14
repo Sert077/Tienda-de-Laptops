@@ -1,19 +1,50 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
+
+
 {% if messages %}
     {% for message in messages %}
         <script>
+
+          console.log('verificar el mensaej')
             Swal.fire({
-                title: "{{ message.tags }}",
-                text: "{{ message }}",
-                icon: "{{ message.tags }}",
+
+                title: "Se añadió correctamente la Laptop",
+                icon: "success",
                 timer: 3000,
                 timerProgressBar: true,
                 showConfirmButton: false,
-                position: 'top-end'
             });
         </script>
     {% endfor %}
 {% endif %}
+
+
+{% block js %}
+<script>
+  function cancelarRegistro(){
+    Swal.fire({
+      title: "Desea cancelar el registro",
+      icon: "question",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Si"
+    })
+    .then(function(result) {
+      if(result.isConfirmed){
+        document.getElementById("formularioRegistro").reset();
+        var invalidFields = document.querySelectorAll(".is-invalid");
+        invalidFields.forEach(function(field) {
+          field.classList.remove("is-invalid");
+        });
+        document.querySelector('.modal-backdrop').remove();
+      document.getElementById("myModal").style.display = 'none';
+      }
+    })
+  }
+</script>
+{% endblock %}
+
+
 <section class="contenido aliniado">
       {% for laptop, ruta in laptops_rutas %}
       <div class="contenedor-foto">
@@ -435,11 +466,10 @@
                       <button
                         class="btn btn-default"
                         title=""
-                        id="cerrarModal"
+                        
                         style="background-color: #243757;color: white;"
                         type="button"
-                        data-dismiss="modal"
-                        onclick="borrarDatos()"
+                        onclick="cancelarRegistro()"
                       >
                         CANCELAR
                       </button>
