@@ -13,7 +13,8 @@ from django.contrib.auth.decorators import user_passes_test
 def index(request):
     return render(request, "index.html")
 
-
+def informacion(request):
+    return render(request, "informacion.html")
 # Create your views here.
 
 @login_required
@@ -37,30 +38,20 @@ def error_404(request, exception):
 
 @login_required
 def laptops(request):
-    laptops = Registrar_Laptop.objects.all()
-    lista_rutas = []
-    for laptop in laptops:
-        ruta_fallida =  str(laptop.imagen_1)
-        cadena_eliminar = 'proyecto'
-        ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
-        lista_rutas.append(ruta_correcta)
-        print(ruta_correcta)
-        
-    laptops_rutas = zip(laptops, lista_rutas)
-    return render(request, "laptops.html",{
-        'laptops_rutas': laptops_rutas
-    })
-        
-
-
-@user_passes_test(lambda u: u.is_superuser, login_url='/403/')
-def registro_laptops(request):
-    if not request.user.is_superuser:
-        messages.error(request, 'No tienes acceso para registrar laptops')
-        return redirect('403')
-    
     if request.method == 'GET':
-        return render(request, "registrar_laptops.html")
+        laptops = Registrar_Laptop.objects.all()
+        lista_rutas = []
+        for laptop in laptops:
+            ruta_fallida =  str(laptop.imagen_1)
+            cadena_eliminar = 'proyecto'
+            ruta_correcta = ruta_fallida.replace(cadena_eliminar, '')
+            lista_rutas.append(ruta_correcta)
+            print(ruta_correcta)
+            
+        laptops_rutas = zip(laptops, lista_rutas)
+        return render(request, "laptops.html",{
+            'laptops_rutas': laptops_rutas
+        })
     else:
         laptop = Registrar_Laptop.objects.create(
             marca=request.POST['marca'],
@@ -83,6 +74,8 @@ def registro_laptops(request):
             imagen_4=request.FILES['imagen_4'])
         messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
         return redirect("laptops")
+        
+
 
 
 def signin(request):
