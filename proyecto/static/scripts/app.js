@@ -30,3 +30,14 @@ function ocultarModal() {
 // Asignar los eventos de clic a los botones correspondientes
 abrirModalBtn.addEventListener('click', mostrarModal);
 cerrarModalBtn.addEventListener('click', ocultarModal);
+
+function borrarDatos() {
+  console.log("estes es le candealsdlas")
+  document.getElementById("cerrarModal").addEventListener("click", function() {
+    document.getElementById("formularioRegistro").reset();
+    var invalidFields = document.querySelectorAll(".is-invalid");
+  invalidFields.forEach(function(field) {
+    field.classList.remove("is-invalid");
+  });
+  });
+}
