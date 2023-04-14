@@ -45,12 +45,12 @@
 </section>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width: 100%;">
+    <div class="modal-content" style="width: 100%;margin-top: 10%;">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Datos de nuevo equipo</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <div class="modal-body" style="width: 1000px;">
+      <div class="modal-body" style="width: 1100px;">
         <div class="tab-pane active" id="post-object-form">
           <form
             method="POST"
@@ -64,7 +64,7 @@
                 <fieldset>
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
-                      Modelo
+                      Modelo <label style="color: red;">*</label>
                     </label>
                     <div class="col-sm-9">
                       <input
@@ -72,7 +72,7 @@
                         title="Por favor ingrese un modelo"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s]+"
+                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
                         value=""
                         required
                         maxlength="20"
@@ -80,15 +80,14 @@
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
-                        Por favor ingrese un modelo con un mínimo de 5 y un máximo de
-                        20 caracteres.
+                        Ingrese un modelo válido.
                       </div>
                     </div>
                   </div>
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio"
-                      >Marca</label
+                      >Marca <label style="color: red;">*</label></label
                     >
                     <div class="col-sm-9">
                       <input
@@ -104,15 +103,14 @@
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
-                        Por favor ingrese una marca con un mínimo de 2 y un máximo de
-                        20 caracteres.
+                       Ingrese un marca válida.
                       </div>
                     </div>
                   </div>
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
-                      Nombre
+                      Nombre <label style="color: red;">*</label>
                     </label>
       
                     <div class="col-sm-9">
@@ -121,7 +119,7 @@
                         title="Por favor ingrese un nombre"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s]+"
+                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
                         value=""
                         required
                         maxlength="20"
@@ -129,15 +127,14 @@
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
-                        Por favor ingrese un nombre con un mínimo de 8 y un máximo de
-                        20 caracteres.
+                        Ingrese un nombre válido.
                       </div>
                     </div>
                   </div>
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
-                      Stock
+                      Stock <label style="color: red;">*</label>
                     </label>
       
                     <div class="col-sm-9">
@@ -153,15 +150,14 @@
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
-                        Por favor ingrese un numero con un mínimo 1 y un máximo de
-                        1000.
+                        Introduzca un valor de unidad que sea mayor a 0 y menor a 1000.
                       </div>
                     </div>
                   </div>
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
-                      Precio
+                      Precio <label style="color: red;">*</label>
                     </label>
       
                     <div class="col-sm-9">
@@ -177,14 +173,13 @@
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
-                        Por favor ingrese un precio como mínimo 350 y un máximo de
-                        30000.
+                        Introduzca un valor de unidad que sea mayor a 350 y menor a 30000.
                       </div>
                     </div>
                   </div>
       
                   <div class="form-group">
-                    <label class="col-sm-3 control-label"> Pantalla </label>
+                    <label class="col-sm-3 control-label"> Pantalla <label style="color: red;">*</label></label>
       
                     <div class="col-sm-9">
                       <select class="form-control" name="pantalla" required>
@@ -201,7 +196,7 @@
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
-                      Teclado
+                      Teclado <label style="color: red;">*</label>
                     </label>
       
                     <div class="col-sm-9">
@@ -218,15 +213,14 @@
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
-                        Por favor ingrese un lenguaje del teclado con un mínimo de 5 y
-                        un máximo de 10 caracteres.
+                        “Introduzca un idioma de teclado válido.
                       </div>
                     </div>
                   </div>
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
-                      Procesador
+                      Procesador <label style="color: red;">*</label>
                     </label>
       
                     <div class="col-sm-9">
@@ -235,7 +229,7 @@
                         title="Por favor ingrese el procesador de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s]+"
+                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
                         value=""
                         required
                         maxlength="25"
@@ -243,16 +237,15 @@
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
-                        Por favor ingrese un procesador de un mínimo de 5 y un máximo
-                        de 25 caracteres.
+                        Introduzca un procesador válido.
                       </div>
                     </div>
                   </div>
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
-                      Ram
-                    </label>
+                      Ram <label style="color: red;">*</label>
+                    </label> 
       
                     <div class="col-sm-9">
                       <select class="form-control" name="ram" required>
@@ -287,7 +280,7 @@
                   <fieldset>
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        Color
+                        Color <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9">
@@ -304,15 +297,14 @@
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <div class="invalid-feedback">
-                          Por favor ingrese un color de un mínimo de 3 y un máximo de 15
-                          caracteres.
+                          Por favor ingrese un color de un mínimo de 3 y un máximo de 15 caracteres.
                         </div>
                       </div>
                     </div>
         
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        M2
+                        M2 <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9">
@@ -330,7 +322,7 @@
         
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        Hdd
+                        Hdd <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9">
@@ -350,7 +342,7 @@
         
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        Grafica
+                        Grafica <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9">
@@ -359,7 +351,7 @@
                           title="Por favor ingrese la grafica de la laptop"
                           class="form-control"
                           type="text"
-                          pattern="[a-zA-Z0-9\s]+"
+                          pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
                           value=""
                           required
                           maxlength="25"
@@ -367,15 +359,14 @@
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <div class="invalid-feedback">
-                          Por favor una grafica de un mínimo de 5 y un máximo de 25
-                          caracteres.
+                          Introduzca una tarjeta gráfica válida.
                         </div>
                       </div>
                     </div>
         
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        Descripcion
+                        Descripcion <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9">
@@ -385,7 +376,7 @@
                           class="form-control"
                           style="height: 100px;"
                           type="text"
-                          pattern="[a-zA-Z0-9\s]+"
+                          pattern="[a-zA-Z0-9\s\-\/\(\)_\.,]+"
                           value=""
                           required
                           maxlength="1000"
@@ -393,15 +384,14 @@
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <div class="invalid-feedback">
-                          Por favor ingrese una descripcion de un mínimo de 30 y un
-                          máximo de 1000 caracteres.
+                          Introduzca una descripción válida.
                         </div>
                       </div>
                     </div>
         
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        Imagenes
+                        Imagenes <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9" style="display: grid">
@@ -434,7 +424,7 @@
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <div class="invalid-feedback">
-                          Por favor selecione una imagen
+                          Por Favor suba 4 imágenes de la laptop.
                         </div>
                       </div>
                     </div>
