@@ -77,37 +77,6 @@ def laptops(request):
         
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url='/403/')
-def registro_laptops(request):
-    if not request.user.is_superuser:
-        messages.error(request, 'No tienes acceso para registrar laptops')
-        return redirect('403')
-    
-    if request.method == 'GET':
-        return render(request, "registrar_laptops.html")
-    else:
-        laptop = Registrar_Laptop.objects.create(
-            marca=request.POST['marca'],
-            modelo=request.POST['modelo'],
-            nombre=request.POST['nombre'],
-            stock=request.POST['stock'],
-            precio=request.POST['precio'],
-            pantalla=request.POST['pantalla'],
-            teclado=request.POST['teclado'],
-            procesador=request.POST['procesador'],
-            ram=request.POST['ram'],
-            color=request.POST['color'],
-            m2=request.POST['m2'],
-            hdd=request.POST['hdd'],
-            grafica=request.POST['grafica'],
-            descripcion=request.POST['descripcion'],
-            imagen_1=request.FILES['imagen_1'],
-            imagen_2=request.FILES['imagen_2'],
-            imagen_3=request.FILES['imagen_3'],
-            imagen_4=request.FILES['imagen_4'])
-        messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
-        return redirect("laptops")
-
 
 def signin(request):
     if request.method == 'GET':
