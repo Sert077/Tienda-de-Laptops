@@ -54,7 +54,7 @@
         <div class="tab-pane active" id="post-object-form">
           <form
             method="POST"
-            action="{% url 'registro_laptops' %}"
+            action="{% url 'laptops' %}"
             enctype="multipart/form-data"
             id="formularioRegistro"
           >
@@ -72,7 +72,7 @@
                         title="Por favor ingrese un modelo"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                        pattern="[a-zA-Z0-9\s\-\/\(\)_\.,ñÑ]+"
                         value=""
                         required
                         maxlength="20"
