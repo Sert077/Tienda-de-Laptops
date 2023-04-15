@@ -42,6 +42,13 @@ li{
     justify-content: center;
     padding: 10px; 
 }
+li:hover{
+    background-color: #dad5b7;
+    width: 135px;
+}
+.sesion a{
+    text-decoration: none;
+}
 a{
     color: white;
     text-decoration: none;
@@ -144,3 +151,32 @@ i{
 .contenedor-foto:hover{
     background-color: #e6e6e6 ;
 }
+
+/*carrusel de imagenes*/
+.contenedor-imagenes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 130px;
+    top: 170px;
+  }
+  
+  .contenedor-imagenes-secundarias {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imagen-secundaria {
+    width: 200px;
+    height: 150px;
+    margin: 0 10px;
+    cursor: pointer;
+    max-width: 100%;
+  }
+  
+  #imagen-principal {
+    width: 600px;
+    height: 350px;
+    margin-bottom: 10px;
+  }
