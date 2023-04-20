@@ -11,7 +11,7 @@
       <div class="tab-pane active" id="post-object-form">
         <form
           method="POST"
-          action="{% url 'laptops' %}"
+          action="{% url 'modificarLaptop' laptop.id %}"
           enctype="multipart/form-data"
           id="formularioRegistro"
         >
@@ -349,9 +349,9 @@
                       <input
                         name="imagen_1"
                         type="file"
-                        value="{{laptop.imagen_1}}"
+                        value=""
                         accept=".jpg,.png"
-                        required onchange="validar1()"
+                         onchange="validar1()"
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       {{ruta_2}}
@@ -359,7 +359,7 @@
                         name="imagen_2"
                         type="file"
                         accept=".jpg,.png"                         
-                        required onchange="validar2()"
+                         onchange="validar2()"
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       {{ruta_3}}
@@ -368,7 +368,7 @@
                         name="imagen_3"
                         type="file"
                         accept=".jpg,.png"
-                        required onchange="validar3()"
+                         onchange="validar3()"
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       {{ruta_4}}
@@ -377,7 +377,7 @@
                         name="imagen_4"
                         type="file"
                         accept=".jpg,.png"
-                        required onchange="validar4()"
+                         onchange="validar4()"
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
