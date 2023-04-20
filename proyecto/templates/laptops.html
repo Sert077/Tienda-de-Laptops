@@ -65,24 +65,34 @@
             <h6 class="precio">Precio: {{ laptop.precio }} bs</h6>
             <h6 class="precio"> Stock: {{ laptop.stock }}</h6>
         </div>
+        <div>
+        <button style="background-color: blue;"><a style="color: white;" href="{% url 'modificarLaptop' laptop.id %}" >Editar</a></button>
+
+        <button style="background-color: rgb(7, 237, 30);">Vender</button>
+
+        </div>
+        
 
       </div>
       {% endfor %} 
       {% if request.user.is_superuser %}
-  <div class="boton_float">
-    <a href="#" id="myButton" data-toggle="modal" data-target="#myModal">
-      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-plus-circle"
-        viewBox="0 0 16 16" style="color:#314755 ; position: fixed; top:90%; left: 95%;">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-      </svg>
-    </a>
-  </div>
-  {% endif %}
+        <div class="boton_float">
+          <a href="#" id="myButton" data-toggle="modal" data-target="#myModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-plus-circle"
+              viewBox="0 0 16 16" style="color:#314755 ; position: fixed; top:90%; left: 95%;">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+            </svg>
+          </a>
+        </div>
+      {% endif %}
   
 
 </section>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
+
+
+    
     <div class="modal-content" style="width: 100%;margin-top: 10%;">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Datos de nuevo equipo</h4>

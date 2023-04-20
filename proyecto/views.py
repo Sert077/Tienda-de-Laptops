@@ -33,6 +33,22 @@ def informacionLaptop(request, id):
         'ruta_4': ruta_4,
     })
 
+@login_required
+def modificarLaptop(request, id):
+    laptop = Registrar_Laptop.objects.get(id = id)
+    cadena_eliminar = 'proyecto'
+    ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
+    ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
+    ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
+    ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
+    return render(request, "modificar_laptop.html",{
+        'laptop': laptop,
+        'ruta_1': ruta_1,
+        'ruta_2': ruta_2,
+        'ruta_3': ruta_3,
+        'ruta_4': ruta_4,
+    })
+
 def error_404(request, exception):
     return render(request, '403.html', status=404)
 
