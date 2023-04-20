@@ -65,10 +65,10 @@
             <h6 class="precio">Precio: {{ laptop.precio }} bs</h6>
             <h6 class="precio"> Stock: {{ laptop.stock }}</h6>
         </div>
-        <div>
-        <button style="background-color: blue;"><a style="color: white;" href="{% url 'modificarLaptop' laptop.id %}" >Editar</a></button>
+        <div class="contenedor_botones" >
+        <button style="background-color: #314755;"><a style="color: white;" href="{% url 'modificarLaptop' laptop.id %}" >Editar</a></button>
 
-        <button style="background-color: rgb(7, 237, 30);">Vender</button>
+        <button style="background-color: #56FE53;"><a style="color: white;" >Vender</a></button>
 
         </div>
         

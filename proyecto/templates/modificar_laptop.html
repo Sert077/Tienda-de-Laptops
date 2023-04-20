@@ -228,14 +228,7 @@
                     </select>
                   </div>
                 </div>
-    
-                
-            </fieldset>
-            </div >
-  
-            <div class="col-sm-6">
-                <fieldset>
-                  <div class="form-group">
+                <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
                       Color <label style="color: red;">*</label>
                     </label>
@@ -258,6 +251,13 @@
                       </div>
                     </div>
                   </div>
+                
+            </fieldset>
+            </div >
+  
+            <div class="col-sm-6">
+                <fieldset>
+                  
       
                   <div class="form-group">
                     <label class="col-sm-3 control-label" title="Campo obligatorio">
@@ -345,6 +345,7 @@
                     </label>
       
                     <div class="col-sm-9" style="display: grid">
+                        {{ruta_1}}
                       <input
                         name="imagen_1"
                         type="file"
@@ -353,6 +354,7 @@
                         required onchange="validar1()"
                         oninvalid="this.classList.add('is-invalid')"
                       />
+                      {{ruta_2}}
                       <input
                         name="imagen_2"
                         type="file"
@@ -360,6 +362,8 @@
                         required onchange="validar2()"
                         oninvalid="this.classList.add('is-invalid')"
                       />
+                      {{ruta_3}}
+
                       <input
                         name="imagen_3"
                         type="file"
@@ -367,6 +371,8 @@
                         required onchange="validar3()"
                         oninvalid="this.classList.add('is-invalid')"
                       />
+                      {{ruta_4}}
+
                       <input
                         name="imagen_4"
                         type="file"
@@ -382,12 +388,12 @@
       
     <div class="modal-footer">
                   
-                    <div class="form-actions">
+                    <div class="form-actions d-flex justify-content-between" >
                     <button
                       class="btn btn-default"
                       title=""
                       
-                      style="background-color: #243757;color: white;"
+                      style="background-color: #D9D9D9;color: white;margin-right: 40px;"
                       type="button"
                       onclick="cancelarRegistro()"
                     >
@@ -396,9 +402,16 @@
                     <button
                       class="btn btn-primary js-tooltip"
                       title=""
-                      style="background-color: #243757;"
+                      style="background-color: #243757;margin-right: 40px;"
                     >
                       GUARDAR
+                    </button>
+                    <button
+                      class="btn btn-primary js-tooltip"
+                      title=""
+                      style="background-color: #E90F0F;margin-right: 40px;"
+                    >
+                      Eliminar
                     </button>
                   </div>
     </div>

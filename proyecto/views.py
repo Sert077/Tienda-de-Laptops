@@ -35,19 +35,47 @@ def informacionLaptop(request, id):
 
 @login_required
 def modificarLaptop(request, id):
-    laptop = Registrar_Laptop.objects.get(id = id)
-    cadena_eliminar = 'proyecto'
-    ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
-    ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
-    ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
-    ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
-    return render(request, "modificar_laptop.html",{
-        'laptop': laptop,
-        'ruta_1': ruta_1,
-        'ruta_2': ruta_2,
-        'ruta_3': ruta_3,
-        'ruta_4': ruta_4,
-    })
+    if request.method == 'GET':
+        laptop = Registrar_Laptop.objects.get(id = id)
+        cadena_eliminar = 'proyecto/static/imagenes/'
+        ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
+        ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
+        ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
+        ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
+        return render(request, "modificar_laptop.html",{
+            'laptop': laptop,
+            'ruta_1': ruta_1,
+            'ruta_2': ruta_2,
+            'ruta_3': ruta_3,
+            'ruta_4': ruta_4,
+        })
+    else:
+        laptop = get_object_or_404(Registrar_Laptop, pk=id)
+        laptop.marca = request.POST['marca']
+        laptop.modelo = request.POST['modelo']
+        laptop.nombre = request.POST['nombre']
+        laptop.stock = request.POST['stock']
+        laptop.precio = request.POST['precio']
+        laptop.pantalla = request.POST['pantalla']
+        laptop.teclado = request.POST['teclado']
+        laptop.procesador = request.POST['procesador']
+        laptop.ram = request.POST['ram']
+        laptop.color = request.POST['color']
+        laptop.m2 = request.POST['m2']
+        laptop.hdd = request.POST['hdd']
+        laptop.grafica = request.POST['grafica']
+        laptop.descripcion = request.POST['descripcion']
+        if 'imagen_1' in request.FILES:
+            laptop.imagen_1 = request.FILES['imagen_1']
+        if 'imagen_2' in request.FILES:
+            laptop.imagen_2 = request.FILES['imagen_2']
+        if 'imagen_3' in request.FILES:
+            laptop.imagen_3 = request.FILES['imagen_3']
+        if 'imagen_4' in request.FILES:
+            laptop.imagen_4 = request.FILES['imagen_4']
+        laptop.save()
+        return redirect("laptops")
+
 
 def error_404(request, exception):
     return render(request, '403.html', status=404)
@@ -70,24 +98,24 @@ def laptops(request):
         })
     else:
         laptop = Registrar_Laptop.objects.create(
-            marca=request.POST['marca'],
-            modelo=request.POST['modelo'],
-            nombre=request.POST['nombre'],
-            stock=request.POST['stock'],
-            precio=request.POST['precio'],
-            pantalla=request.POST['pantalla'],
-            teclado=request.POST['teclado'],
-            procesador=request.POST['procesador'],
-            ram=request.POST['ram'],
-            color=request.POST['color'],
-            m2=request.POST['m2'],
-            hdd=request.POST['hdd'],
-            grafica=request.POST['grafica'],
-            descripcion=request.POST['descripcion'],
-            imagen_1=request.FILES['imagen_1'],
-            imagen_2=request.FILES['imagen_2'],
-            imagen_3=request.FILES['imagen_3'],
-            imagen_4=request.FILES['imagen_4'])
+            marca = request.POST['marca'],
+            modelo = request.POST['modelo'],
+            nombre = request.POST['nombre'],
+            stock = request.POST['stock'],
+            precio = request.POST['precio'],
+            pantalla = request.POST['pantalla'],
+            teclado = request.POST['teclado'],
+            procesador = request.POST['procesador'],
+            ram = request.POST['ram'],
+            color = request.POST['color'],
+            m2 = request.POST['m2'],
+            hdd = request.POST['hdd'],
+            grafica = request.POST['grafica'],
+            descripcion = request.POST['descripcion'],
+            imagen_1 = request.FILES['imagen_1'],
+            imagen_2 = request.FILES['imagen_2'],
+            imagen_3 = request.FILES['imagen_3'],
+            imagen_4 = request.FILES['imagen_4'])
         messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
         return redirect("laptops")
         
