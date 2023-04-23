@@ -29,7 +29,7 @@
                       title="Por favor ingrese un modelo"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_\.,]+"
+                      pattern="[a-zA-Z0-9\-\/\(\)_\.,]+(\s[a-zA-Z0-9\-\/\(\)_\.,]+)*"
                       value="{{laptop.modelo}}"
                       required
                       maxlength="20"
@@ -52,7 +52,7 @@
                       title="Por favor ingrese una marca"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s]+"
+                      pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                       value="{{laptop.marca}}"
                       required
                       maxlength="20"
@@ -76,7 +76,7 @@
                       title="Por favor ingrese un nombre"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                      pattern="[a-zA-Z0-9]+( [a-zA-Z0-9]+)*"
                       value="{{laptop.nombre}}"
                       required
                       maxlength="20"
@@ -162,7 +162,7 @@
                       title="Por favor ingrese el lenguaje del teclado de la laptop"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_\.,ñÑ]+"
+                      pattern="[a-zA-Z0-9\-\/\(\)_\.,ñÑ]+( [a-zA-Z0-9\-\/\(\)_\.,ñÑ]+)*"
                       value="{{laptop.teclado}}"
                       required
                       maxlength="10"
@@ -186,11 +186,11 @@
                       title="Por favor ingrese el procesador de la laptop"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                      pattern="[a-zA-Z0-9\-\/\(\)_\s]([a-zA-Z0-9\-\/\(\)_\s]*[a-zA-Z0-9\-\/\(\)_\s])?"
                       value="{{laptop.procesador}}"
                       required
                       maxlength="25"
-                      minlength="5"
+                      minlength="4"
                       oninvalid="this.classList.add('is-invalid')"
                     />
                     <div class="invalid-feedback">
@@ -239,7 +239,7 @@
                         title="Por favor ingrese el color de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s]+"
+                        pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                         value="{{laptop.color}}"
                         required
                         maxlength="15"
@@ -301,7 +301,7 @@
                         title="Por favor ingrese la grafica de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                        pattern="[a-zA-Z0-9]+(?:[\s\-\/\(\)_][a-zA-Z0-9]+)*"
                         value="{{laptop.grafica}}"
                         required
                         maxlength="25"
