@@ -6,14 +6,14 @@
 header{
     display: flex;
     background-color: #314755;
-    height: 103px;
+    height: 100px;
     align-items: center;
     justify-content: space-between;
 }
 
 .sesion span{
     font-size: 20px;
-    padding: 5px;
+    padding: 8px;
 }
 .sesion{
     display: flex;
@@ -24,10 +24,6 @@ span{
     padding-left: 60px;
     color: white;
     font-size: 28px;
-}
-nav{
-    background-color: #314755;
-    width: 121px;
 }
 ul{
     display: flex;
@@ -64,13 +60,6 @@ i{
     padding: 0px;
 }
 
-header{
-    display: flex;
-    background-color: #314755;
-    height: 103px;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .sesion span{
     font-size: 20px;
@@ -91,9 +80,7 @@ span{
 nav{
     background-color: #314755;
     width: 10%;
-    height: 140vh;
-    
-   
+    height: 105%;
 }
 
 .contenedor1{
