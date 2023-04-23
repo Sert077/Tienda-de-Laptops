@@ -1,6 +1,39 @@
 
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% block js %}
+<script>
+  function eliminarcambios(){
+    Swal.fire({
+      title: "los cambios realizados se eliminaran ¿esta seguro?",
+      icon: "question",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Si"
+    })
+    .then(function(result) {
+      if(result.isConfirmed){
+        document.getElementById("formularioRegistro").reset();
+        var invalidFields = document.querySelectorAll(".is-invalid");
+        invalidFields.forEach(function(field) {
+          field.classList.remove("is-invalid");
+        });
+        $('#mymodal').modal('hide');
+        document.querySelector('.modal-backdrop').remove();
+        document.getElementById("myModal").style.display = 'none';
+        var myButton = document.getElementById("myButton");
+        myButton.click();
+      }
+    })
+  }
+</script>
+{% endblock %}
+
 <section class="contenido aliniado" style="grid-template-columns: none;">
 <div class="modal-content">
     <div class="modal-header">
@@ -395,7 +428,7 @@
                       
                       style="background-color: #D9D9D9;color: white;margin-right: 40px;"
                       type="button"
-                      onclick="cancelarRegistro()"
+                      onclick="eliminarcambios()"
                     >
                       CANCELAR
                     </button>
@@ -410,8 +443,7 @@
                       class="btn btn-primary js-tooltip"
                       title=""
                       style="background-color: #E90F0F;margin-right: 40px;"
-                    >
-                      ELIMINAR
+                    > ELIMINAR
                     </button>
                   </div>
     </div>
