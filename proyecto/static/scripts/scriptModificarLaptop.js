@@ -13,3 +13,12 @@ $(document).ready(function() {
         botonGuardar.prop('disabled', true);
       });
   });
+
+  function borrarMensajesError(){
+    var invalidFields = document.querySelectorAll(".is-invalid");
+        invalidFields.forEach(function(field) {
+          field.classList.remove("is-invalid");
+    });
+      var myButton = document.getElementById("btnGuardar");
+      myButton.click();
+  }

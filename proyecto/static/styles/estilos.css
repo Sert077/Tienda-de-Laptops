@@ -145,7 +145,6 @@ i{
     flex-direction: column;
     align-items: center;
     position: absolute;
-    left: 130px;
     top: 170px;
   }
   
@@ -171,3 +170,4 @@ i{
     display: flex;
      justify-content: space-between;
   }
+  
