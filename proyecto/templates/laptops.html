@@ -48,6 +48,14 @@
       }
     })
   }
+  function borrarMensajesError(){
+    var invalidFields = document.querySelectorAll(".is-invalid");
+        invalidFields.forEach(function(field) {
+          field.classList.remove("is-invalid");
+    });
+      var myButton = document.getElementById("botonGuardar");
+      myButton.click();
+  }
 </script>
 {% endblock %}
 
@@ -483,7 +491,6 @@
                       <button
                         class="btn btn-default"
                         title=""
-                        
                         style="background-color: #243757;color: white;"
                         type="button"
                         onclick="cancelarRegistro()"
@@ -493,7 +500,10 @@
                       <button
                         class="btn btn-primary js-tooltip"
                         title=""
+                        id="botonGuardar"
                         style="background-color: #243757;"
+                        onclick="borrarMensajesError()"
+
                       >
                         GUARDAR
                       </button>
