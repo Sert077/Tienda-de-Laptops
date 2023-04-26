@@ -8,6 +8,7 @@ urlpatterns = [
     path('login/', views.signin, name="signin"),
     path('informacionLaptop/<int:id>',views.informacionLaptop, name = "informacionLaptop"),
     path('modificarLaptop/<int:id>',views.modificarLaptop, name = "modificarLaptop"),
+    path('venderLaptop/<int:id>',views.venderLaptop, name = "venderLaptop"),
 
 ]
 

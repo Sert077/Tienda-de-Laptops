@@ -48,6 +48,14 @@
       }
     })
   }
+  function borrarMensajesError(){
+    var invalidFields = document.querySelectorAll(".is-invalid");
+        invalidFields.forEach(function(field) {
+          field.classList.remove("is-invalid");
+    });
+      var myButton = document.getElementById("botonGuardar");
+      myButton.click();
+  }
 </script>
 {% endblock %}
 
@@ -60,15 +68,17 @@
             <img src="{{ ruta }}" width="200px" height="200px" alt="" />
         </a>
         <div style="background-color: #DaD5B7;" >
-            <h6 class="descripcion">Marca:{{ laptop.marca }}</h6>
-            <h6 class="descripcion">Modelo: {{ laptop.modelo }}</h6>
-            <h6 class="precio">Precio: {{ laptop.precio }} bs</h6>
-            <h6 class="precio"> Stock: {{ laptop.stock }}</h6>
+            <h6 class="descripcion" style="font-size: 18px;">Marca:{{ laptop.marca }}</h6>
+            <h6 class="descripcion" style="font-size: 18px;">Modelo: {{ laptop.modelo }}</h6>
+            <h6 class="precio" style="font-size: 18px;">Precio: {{ laptop.precio }} bs</h6>
+            <h6 class="precio" style="font-size: 18px;"> Stock: {{ laptop.stock }}</h6>
         </div>
         <div class="contenedor_botones" >
-        <button style="background-color: #314755;"><a style="color: white;" href="{% url 'modificarLaptop' laptop.id %}" >Editar</a></button>
+        <button style="background-color: #314755;"><a style="color: white;" href="{% url 'modificarLaptop' laptop.id %}" >Editar 
+        </a></button>
 
-        <button style="background-color: #56FE53;"><a style="color: white;" >Vender</a></button>
+        <button style="background-color: #56FE53;"><a style="color: white;" href="{% url 'venderLaptop' laptop.id %}" >Vender 
+        </a></button>
 
         </div>
         
@@ -120,7 +130,7 @@
                         title="Por favor ingrese un modelo"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_\.,]+"
+                        pattern="[a-zA-Z0-9\-\/\(\)_\.,]+(\s[a-zA-Z0-9\-\/\(\)_\.,]+)*"
                         value=""
                         required
                         maxlength="20"
@@ -143,7 +153,7 @@
                         title="Por favor ingrese una marca"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s]+"
+                        pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                         value=""
                         required
                         maxlength="20"
@@ -167,7 +177,7 @@
                         title="Por favor ingrese un nombre"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                        pattern="[a-zA-Z0-9]+( [a-zA-Z0-9]+)*"
                         value=""
                         required
                         maxlength="20"
@@ -253,11 +263,11 @@
                         title="Por favor ingrese el lenguaje del teclado de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_\.,ñÑ]+"
+                        pattern="[a-zA-Z0-9\-\/\(\)_\.,ñÑ]+( [a-zA-Z0-9\-\/\(\)_\.,ñÑ]+)*"
                         value=""
                         required
                         maxlength="10"
-                        minlength="5"
+                        minlength="4"
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
@@ -277,7 +287,7 @@
                         title="Por favor ingrese el procesador de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                        pattern="[a-zA-Z0-9\-\/\(\)_\s]([a-zA-Z0-9\-\/\(\)_\s]*[a-zA-Z0-9\-\/\(\)_\s])?"
                         value=""
                         required
                         maxlength="25"
@@ -337,7 +347,7 @@
                           title="Por favor ingrese el color de la laptop"
                           class="form-control"
                           type="text"
-                          pattern="[a-zA-Z0-9\s]+"
+                          pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                           value=""
                           required
                           maxlength="15"
@@ -399,7 +409,7 @@
                           title="Por favor ingrese la grafica de la laptop"
                           class="form-control"
                           type="text"
-                          pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                          pattern="[a-zA-Z0-9]+(?:[\s\-\/\(\)_][a-zA-Z0-9]+)*"
                           value=""
                           required
                           maxlength="25"
@@ -483,7 +493,6 @@
                       <button
                         class="btn btn-default"
                         title=""
-                        
                         style="background-color: #243757;color: white;"
                         type="button"
                         onclick="cancelarRegistro()"
@@ -493,7 +502,10 @@
                       <button
                         class="btn btn-primary js-tooltip"
                         title=""
+                        id="botonGuardar"
                         style="background-color: #243757;"
+                        onclick="borrarMensajesError()"
+
                       >
                         GUARDAR
                       </button>

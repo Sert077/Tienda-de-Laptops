@@ -1,7 +1,8 @@
 
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<head>
+  <link rel="stylesheet" href="{% static 'styles/estiloModificarLaptop.css' %}">
+</head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -10,7 +11,7 @@
 <script>
   function eliminarcambios(){
     Swal.fire({
-      title: "los cambios realizados se eliminaran ¿esta seguro?",
+      title: "Desea descartar los cambios",
       icon: "question",
       showCancelButton: true,
       cancelButtonText: "No",
@@ -18,29 +19,20 @@
     })
     .then(function(result) {
       if(result.isConfirmed){
-        document.getElementById("formularioRegistro").reset();
-        var invalidFields = document.querySelectorAll(".is-invalid");
-        invalidFields.forEach(function(field) {
-          field.classList.remove("is-invalid");
-        });
-        $('#mymodal').modal('hide');
-        document.querySelector('.modal-backdrop').remove();
-        document.getElementById("myModal").style.display = 'none';
-        var myButton = document.getElementById("myButton");
-        myButton.click();
+        window.location.href = "http://127.0.0.1:8000/laptops/";
       }
     })
   }
 </script>
 {% endblock %}
 
-<section class="contenido aliniado">
+<section class="contenido aliniado" style="grid-template-columns: none;">
 <div class="modal-content">
     <div class="modal-header">
       <h4 class="modal-title" id="myModalLabel">Editar datos de la laptop</h4>
       
     </div>
-    <div class="modal-body" style="width: 1100px;">
+    <div class="modal-body">
       <div class="tab-pane active" id="post-object-form">
         <form
           method="POST"
@@ -62,7 +54,7 @@
                       title="Por favor ingrese un modelo"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_\.,]+"
+                      pattern="[a-zA-Z0-9\-\/\(\)_\.,]+(\s[a-zA-Z0-9\-\/\(\)_\.,]+)*"
                       value="{{laptop.modelo}}"
                       required
                       maxlength="20"
@@ -85,7 +77,7 @@
                       title="Por favor ingrese una marca"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s]+"
+                      pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                       value="{{laptop.marca}}"
                       required
                       maxlength="20"
@@ -109,7 +101,7 @@
                       title="Por favor ingrese un nombre"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                      pattern="[a-zA-Z0-9]+( [a-zA-Z0-9]+)*"
                       value="{{laptop.nombre}}"
                       required
                       maxlength="20"
@@ -195,7 +187,7 @@
                       title="Por favor ingrese el lenguaje del teclado de la laptop"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_\.,ñÑ]+"
+                      pattern="[a-zA-Z0-9\-\/\(\)_\.,ñÑ]+( [a-zA-Z0-9\-\/\(\)_\.,ñÑ]+)*"
                       value="{{laptop.teclado}}"
                       required
                       maxlength="10"
@@ -219,11 +211,11 @@
                       title="Por favor ingrese el procesador de la laptop"
                       class="form-control"
                       type="text"
-                      pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                      pattern="[a-zA-Z0-9\-\/\(\)_\s]([a-zA-Z0-9\-\/\(\)_\s]*[a-zA-Z0-9\-\/\(\)_\s])?"
                       value="{{laptop.procesador}}"
                       required
                       maxlength="25"
-                      minlength="5"
+                      minlength="4"
                       oninvalid="this.classList.add('is-invalid')"
                     />
                     <div class="invalid-feedback">
@@ -272,7 +264,7 @@
                         title="Por favor ingrese el color de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s]+"
+                        pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                         value="{{laptop.color}}"
                         required
                         maxlength="15"
@@ -334,7 +326,7 @@
                         title="Por favor ingrese la grafica de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                        pattern="[a-zA-Z0-9]+(?:[\s\-\/\(\)_][a-zA-Z0-9]+)*"
                         value="{{laptop.grafica}}"
                         required
                         maxlength="25"
@@ -370,6 +362,7 @@
                         Introduzca una descripción válida.
                       </div>
                     </div>
+
                   </div>
       
                   <div class="form-group">
@@ -426,8 +419,7 @@
                       class="btn btn-default"
                       title=""
                       
-                      style="background-color: #D9D9D9;color: white;margin-right: 40px;"
-                      type="button"
+                      style="background-color: #D9D9D9;color: black;margin-right: 40px;"
                       type="button"
                       onclick="eliminarcambios()"
                     >
@@ -435,8 +427,10 @@
                     </button>
                     <button
                       class="btn btn-primary js-tooltip"
+                      id="btnGuardar"
                       title=""
                       style="background-color: #243757;margin-right: 40px;"
+                      onclick="borrarMensajesError()"
                     >
                       GUARDAR
                     </button>
@@ -444,8 +438,7 @@
                       class="btn btn-primary js-tooltip"
                       title=""
                       style="background-color: #E90F0F;margin-right: 40px;"
-                    >
-                      Eliminar
+                    > ELIMINAR
                     </button>
                   </div>
     </div>
@@ -459,5 +452,8 @@
     </div>
   </div>
 </section>
+
+<script src="{% static '/scripts/scriptModificarLaptop.js' %}"></script>
+
 
 {% endblock %}
