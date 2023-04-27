@@ -59,4 +59,5 @@ class vender_Laptop(models.Model):
     fecha = models.DateField()
     cliente = models.CharField(max_length=35)
     direccion = models.CharField(max_length=25)
+    ci = models.IntegerField()
     telefono = models.IntegerField()

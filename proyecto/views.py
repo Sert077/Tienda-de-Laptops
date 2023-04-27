@@ -121,13 +121,20 @@ def laptops(request):
         return redirect("laptops")
     
 @login_required
-def venderLaptop(request):
+def venderLaptop(request, id=None):
     if request.method == 'GET':
-        laptops = vender_Laptop.objects.all()
-        lista_rutas = []
-
-        return render(request, "venderlaptops.html",{
-            'laptops_rutas': laptops_rutas
+        laptop = Registrar_Laptop.objects.get(id = id)
+        cadena_eliminar = 'proyecto/static/imagenes/'
+        ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
+        ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
+        ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
+        ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
+        return render(request, "venderlaptop.html",{
+            'laptop': laptop,
+            'ruta_1': ruta_1,
+            'ruta_2': ruta_2,
+            'ruta_3': ruta_3,
+            'ruta_4': ruta_4,
         })
         
     else:
@@ -139,8 +146,9 @@ def venderLaptop(request):
             fecha = request.POST['fecha'],
             cliente = request.POST['cliente'],
             direccion = request.POST['direccion'],
+            ci = request.POST['ci'],
             telefono = request.POST['telefono'],)
-        messages.success(request, f"¡La venta de la laptop ha sido registrada exitosamente!")
+        messages.success(request, f"¡La venta ha sido registrada exitosamente!")
         return redirect("laptops")
         
 

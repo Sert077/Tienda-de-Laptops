@@ -72,7 +72,7 @@
         
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        catindad de unidades <label style="color: red;">*</label>
+                        Cantidad de unidades <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9">
@@ -133,13 +133,18 @@
                           />
                           <div class="invalid-feedback">
                             Introduzca una fecha valida.
+                          </select>
                           </div>
                         </div>
                       </div>
         
+                    </fieldset>
+                  </div >
+                      <div class="col-sm-6">
+                        <fieldset>
                     <div class="form-group">
                       <label class="col-sm-3 control-label" title="Campo obligatorio">
-                        Nombre Cliente <label style="color: red;">*</label>
+                       Nombre Cliente <label style="color: red;">*</label>
                       </label>
         
                       <div class="col-sm-9">
@@ -172,7 +177,7 @@
                           title="Por favor ingrese la direccion del cliente"
                           class="form-control"
                           type="text"
-                          pattern="[a-zA-Z0-9\-\/\(\)_\s]([a-zA-Z0-9\-\/\(\)_\s]*[a-zA-Z0-9\-\/\(\)_\s])?"
+                          pattern="[a-zA-Z0-9\-\/\(\)_\.,]+(\s[a-zA-Z0-9\-\/\(\)_\.,]+)*"
                           value=""
                           required
                           maxlength="25"
@@ -180,37 +185,58 @@
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <div class="invalid-feedback">
-                          Introduzca un procesador válido.
+                          Introduzca una direccion valida.
                         </div>
                       </div>
                     </div>
 
-
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" title="Campo obligatorio">
-                          Telefono <label style="color: red;">*</label>
-                        </label>
-          
-                        <div class="col-sm-9">
-                          <input
-                            name="telefono"
-                            title="Por favor ingrese el telefono del cliente"
-                            class="form-control"
-                            type="number"
-                            value=""
-                            required
-                            max="99999999999"
-                            min="1000"
-                            oninvalid="this.classList.add('is-invalid')"
-                          />
-                          <div class="invalid-feedback">
-                            Introduzca un telefono valido.
-                          </div>
+                      <label class="col-sm-3 control-label" title="Campo obligatorio">
+                        Cedula de Identidad <label style="color: red;">*</label>
+                      </label>
+        
+                      <div class="col-sm-9">
+                        <input
+                          name="ci"
+                          title="Por favor ingrese La C.I. del cliente"
+                          class="form-control"
+                          type="number"
+                          value=""
+                          required
+                          max="99999999999"
+                          min="1000"
+                          oninvalid="this.classList.add('is-invalid')"
+                        />
+                        <div class="invalid-feedback">
+                          Introduzca una C.I. valido.
                         </div>
                       </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" title="Campo obligatorio">
+                        Telefono <label style="color: red;">*</label>
+                      </label>
         
-          
-        <div class="modal-footer">
+                      <div class="col-sm-9">
+                        <input
+                          name="telefono"
+                          title="Por favor ingrese el telefono del cliente"
+                          class="form-control"
+                          type="number"
+                          value=""
+                          required
+                          max="99999999999"
+                          min="1000"
+                          oninvalid="this.classList.add('is-invalid')"
+                        />
+                        <div class="invalid-feedback">
+                          Introduzca un telefono valido.
+                        </div>
+                      </div>
+                    </div>
+
+                      <div class="modal-footer">
                       
                         <div class="form-actions d-flex justify-content-between" >
                         <button
@@ -219,7 +245,8 @@
                           
                           style="background-color: #D9D9D9;color: black;margin-right: 40px;"
                           type="button"
-                          onclick="eliminarcambios()"
+                     onclick="eliminarcambios()"
+ -->                          onclick="cancelarRegistro()"
                         >
                           CANCELAR
                         </button>
@@ -231,6 +258,7 @@
                           onclick="borrarMensajesError()"
                         >
                           GUARDAR
+           
                         </button>
                       </div>
         </div>
@@ -243,7 +271,11 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+    <!-- </section>
     </section>
+    -->
     
     
     {% endblock %}
