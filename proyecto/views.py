@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Registrar_Laptop
+from .models import vender_Laptop
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
@@ -100,7 +101,7 @@ def laptops(request):
         laptop = Registrar_Laptop.objects.create(
             marca = request.POST['marca'],
             modelo = request.POST['modelo'],
-            nombre = request.POST['nombre'],
+            nombrecli = request.POST['nombre'],
             stock = request.POST['stock'],
             precio = request.POST['precio'],
             pantalla = request.POST['pantalla'],
@@ -118,9 +119,38 @@ def laptops(request):
             imagen_4 = request.FILES['imagen_4'])
         messages.success(request, f"¡La laptop {laptop.nombre} ha sido registrada exitosamente!")
         return redirect("laptops")
+    
+@login_required
+def venderLaptop(request, id=None):
+    if request.method == 'GET':
+        laptop = Registrar_Laptop.objects.get(id = id)
+        cadena_eliminar = 'proyecto/static/imagenes/'
+        ruta_1 = str(laptop.imagen_1).replace(cadena_eliminar,'')
+        ruta_2 = str(laptop.imagen_2).replace(cadena_eliminar,'')
+        ruta_3 = str(laptop.imagen_3).replace(cadena_eliminar,'')
+        ruta_4 = str(laptop.imagen_4).replace(cadena_eliminar,'')
+        return render(request, "venderlaptop.html",{
+            'laptop': laptop,
+            'ruta_1': ruta_1,
+            'ruta_2': ruta_2,
+            'ruta_3': ruta_3,
+            'ruta_4': ruta_4,
+        })
         
-
-
+    else:
+        laptop = vender_Laptop.objects.create(
+            marca = request.POST['marca'],
+            modelo = request.POST['modelo'],
+            cantidad = request.POST['cantidad'],
+            precio = request.POST['precio'],
+            fecha = request.POST['fecha'],
+            cliente = request.POST['cliente'],
+            direccion = request.POST['direccion'],
+            ci = request.POST['ci'],
+            telefono = request.POST['telefono'],)
+        messages.success(request, f"¡La venta ha sido registrada exitosamente!")
+        return redirect("laptops")
+        
 
 def signin(request):
     if request.method == 'GET':

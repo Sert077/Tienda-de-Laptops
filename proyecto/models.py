@@ -49,3 +49,15 @@ class Registrar_Laptop(models.Model):
     imagen_2 = models.ImageField(upload_to="proyecto/static/imagenes", null=True)
     imagen_3  = models.ImageField(upload_to="proyecto/static/imagenes", null=True)
     imagen_4 = models.ImageField(upload_to="proyecto/static/imagenes", null=True)
+
+
+class vender_Laptop(models.Model):
+    marca = models.CharField(max_length=20)
+    modelo = models.CharField(max_length=20,unique=True)     
+    cantidad = models.IntegerField()
+    precio = models.IntegerField()
+    fecha = models.DateField()
+    cliente = models.CharField(max_length=35)
+    direccion = models.CharField(max_length=25)
+    ci = models.IntegerField()
+    telefono = models.IntegerField()
