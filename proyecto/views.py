@@ -14,8 +14,14 @@ from django.contrib.auth.decorators import user_passes_test
 def index(request):
     return render(request, "index.html")
 
-def informacion(request):
-    return render(request, "informacion.html")
+@login_required
+
+def registroVentas(request):
+    ventas = vender_Laptop.objects.all()
+    return render(request, "registroVentas.html",{
+            'ventas': ventas
+        })
+
 # Create your views here.
 
 @login_required
