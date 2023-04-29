@@ -68,10 +68,10 @@
             <img src="{{ ruta }}" width="200px" height="200px" alt="" />
         </a>
         <div style="background-color: #DaD5B7;" >
-            <h6 class="descripcion" style="font-size: 18px;">Marca:{{ laptop.marca }}</h6>
-            <h6 class="descripcion" style="font-size: 18px;">Modelo: {{ laptop.modelo }}</h6>
-            <h6 class="precio" style="font-size: 18px;">Precio: {{ laptop.precio }} bs</h6>
-            <h6 class="precio" style="font-size: 18px;"> Stock: {{ laptop.stock }}</h6>
+            <h6 class="descripcion" style="font-size: 18px;width: 100%;">Marca:{{ laptop.marca }}</h6>
+            <h6 class="descripcion" style="font-size: 18px;width: 100%;">Modelo: {{ laptop.modelo }}</h6>
+            <h6 class="precio" style="font-size: 18px;width: 100%;">Precio: {{ laptop.precio }} bs</h6>
+            <h6 class="precio" style="font-size: 18px;width: 100%;"> Stock: {{ laptop.stock }}</h6>
         </div>
         <div class="contenedor_botones" >
         <button style="background-color: #314755;"><a style="color: white;" href="{% url 'modificarLaptop' laptop.id %}" >Editar 
