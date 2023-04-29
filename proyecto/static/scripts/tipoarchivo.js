@@ -6,7 +6,9 @@ function validar1() {
     // Si la extensión obtenida no está incluida en la lista de valores
     // del atributo "accept", mostrar un error.
     if(document.querySelector('input[name="imagen_1"]').getAttribute('accept').split(',').indexOf(extension) < 0) {
+
       alert('Archivo inválido. No se permite la extensión ' + extension);
+      archivo.value = '';
     }
   }
 
@@ -19,6 +21,8 @@ function validar1() {
     // del atributo "accept", mostrar un error.
     if(document.querySelector('input[name="imagen_2"]').getAttribute('accept').split(',').indexOf(extension) < 0) {
       alert('Archivo inválido. No se permite la extensión ' + extension);
+      archivo.value = '';
+
     }
   }
 
@@ -31,6 +35,8 @@ function validar1() {
     // del atributo "accept", mostrar un error.
     if(document.querySelector('input[name="imagen_3"]').getAttribute('accept').split(',').indexOf(extension) < 0) {
       alert('Archivo inválido. No se permite la extensión ' + extension);
+      archivo.value = '';
+
     }
   }
 
@@ -43,5 +49,7 @@ function validar1() {
     // del atributo "accept", mostrar un error.
     if(document.querySelector('input[name="imagen_4"]').getAttribute('accept').split(',').indexOf(extension) < 0) {
       alert('Archivo inválido. No se permite la extensión ' + extension);
+      archivo.value = '';
+
     }
   }
