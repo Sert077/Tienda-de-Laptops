@@ -2,6 +2,7 @@
 .ciclo{
     position: relative;
     float: right;
+    
     top: 30px;
 }
 
@@ -9,6 +10,7 @@
     width: 300px;
     vertical-align: middle;
     white-space: nowrap;
+    
     position:absolute;
     top: 110px;
     right: 10px;
