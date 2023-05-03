@@ -7,44 +7,16 @@
   <link rel="stylesheet" href="{% static 'styles/busqueda.css' %}">
   
   
-  <div class="busqueda">
-    
-    
-    <div class="row">
-      
-      <div class="col-md-12 search">
-        
-        <form method="get">
-          
-          <div id="custom-search-input">
-            
-            <div class="input-group col-md-12">
-              
-              <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value = "{{request.GET.buscar}}">
-              
-              <span class="input-group-list">
-                <i class="icon icon-search"></i>
-                
-              </span>
-              <div class="posboton">
-                <button class="botonbuscar" >Buscar</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      
+  <div class="box">
+    <div class="container-4">
+      <form method="get">
+        <input type="text" id="search" placeholder="BUSCAR" name="buscar" value = "{{request.GET.buscar}}"/>
+      <button class="icon"></button>
+      </form>  
     </div>
+  </div>
 
-    
-    </div>
-    
-  </div> 
-  
-  
-  
-  <head>  
-    
-  </head> 
+
   
 {% if messages %}
     {% for message in messages %}
