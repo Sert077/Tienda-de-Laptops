@@ -114,7 +114,7 @@ def laptops(request):
         laptop = Registrar_Laptop.objects.create(
             marca = request.POST['marca'],
             modelo = request.POST['modelo'],
-            nombrecli = request.POST['nombre'],
+            nombre = request.POST['nombre'],
             stock = request.POST['stock'],
             precio = request.POST['precio'],
             pantalla = request.POST['pantalla'],
