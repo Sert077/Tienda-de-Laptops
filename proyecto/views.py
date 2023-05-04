@@ -10,18 +10,21 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q 
+from django.db.models import F, ExpressionWrapper, FloatField
 
 # Create your views here.
 def index(request):
     return render(request, "index.html")
 
 @login_required
-
 def registroVentas(request):
-    ventas = vender_Laptop.objects.all()
+    ventas = vender_Laptop.objects.annotate(
+        total=ExpressionWrapper(F('cantidad') * F('precio'), output_field=FloatField())
+    ).order_by('fecha')
     return render(request, "registroVentas.html",{
-            'ventas': ventas
-        })
+        'ventas': ventas
+    })
+
 
 # Create your views here.
 

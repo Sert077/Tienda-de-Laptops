@@ -72,6 +72,7 @@
           </a>
           <a href="{% url 'laptops' %}" style="color: white !important; text-decoration: none">LAPTOPS</a>
         </li>
+        {% if request.user.is_superuser %}
         <li>
           <a href="{% url 'registroVentas' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16" style="color: white;">
@@ -81,6 +82,7 @@
           </a>
           <a href="{% url 'registroVentas' %}" style="color: white !important; text-decoration: none">VENTAS</a>
         </li>
+        {% endif %}
         {% endif %}
       </ul>
     </nav>
