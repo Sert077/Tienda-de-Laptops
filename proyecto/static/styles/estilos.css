@@ -38,10 +38,12 @@ li{
     justify-content: center;
     padding: 10px; 
 }
+
 li:hover{
     background-color: #dad5b7;
-    width: 135px;
+    width: 181px;
 }
+
 .sesion a{
     text-decoration: none;
 }
@@ -85,7 +87,6 @@ nav{
 
 .contenedor1{
     display: flex;
-    justify-content: space-between;
     height: 87vh;
 }
 ul{
@@ -95,13 +96,7 @@ ul{
     flex-direction: column;
     padding: 0;
 }
-li{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px; 
-}
+
 a{
     color: white;
     text-decoration: none;

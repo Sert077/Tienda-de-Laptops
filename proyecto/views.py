@@ -172,7 +172,6 @@ def venderLaptop(request, id=None):
             )
             messages.success(request, f"¡La venta ha sido registrada exitosamente!")
             return redirect("laptops")
-
         
 
 def signin(request):
