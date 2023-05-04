@@ -83,7 +83,7 @@ def modificarLaptop(request, id):
             laptop.imagen_4 = request.FILES['imagen_4']
         laptop.save()
         messages.success(request, f"¡La laptop {laptop.nombre} ha sido modificada exitosamente!")
-        return redirect("laptops")
+        return redirect("modificarLaptop", id=id)
 
 
 def error_404(request, exception):
