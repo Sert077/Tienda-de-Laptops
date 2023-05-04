@@ -7,6 +7,25 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+{% if messages %}
+  {% for message in messages %}
+      <script>
+
+        console.log('verificar el mensaej')
+          Swal.fire({
+
+              title: "Los datos se modificaron correctamente",
+              icon: "success",
+              timer: 3000,
+              timerProgressBar: true,
+              showConfirmButton: false,
+          });
+      </script>
+  {% endfor %}
+{% endif %}
+
+
 {% block js %}
 <script>
   function eliminarcambios(){

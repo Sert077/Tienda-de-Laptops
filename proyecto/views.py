@@ -82,6 +82,7 @@ def modificarLaptop(request, id):
         if 'imagen_4' in request.FILES:
             laptop.imagen_4 = request.FILES['imagen_4']
         laptop.save()
+        messages.success(request, f"¡La laptop {laptop.nombre} ha sido modificada exitosamente!")
         return redirect("laptops")
 
 
