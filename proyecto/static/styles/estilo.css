@@ -1,5 +1,6 @@
 .fondo{
     background-image: url('/static/imagenes/bloom.jpg');
+    background-size: cover;
     background-position: center center;
     background-repeat:no-repeat;
     background-color: #020b1a;
@@ -34,15 +35,12 @@
 }
 
 #login {
+    opacity: 0.95;
     width: 100%;
     padding: 50px 30px;
     
     background-color: #dedee4;
-    
 
-    
-    -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
     box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
     
     border-radius: 3px 3px 3px 3px;
@@ -134,7 +132,7 @@
 }
 
 .contenido {
-    display: grid;
+    display: inline;
     grid-template-columns: repeat(4, 1fr); /* 4 columnas con ancho igual */
     grid-gap: 10px; /* espacio entre los contenedores */
 }
@@ -143,4 +141,10 @@
     padding: 20px;
     text-align: center;
 
+}
+
+.guardaLaptops {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas con ancho igual */
+    grid-gap: 10px; /* espacio entre los contenedores */
 }
