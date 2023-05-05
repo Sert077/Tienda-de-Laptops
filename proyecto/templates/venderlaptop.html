@@ -8,13 +8,14 @@
 
   {% block js %}
   <script>
-    function cancelarVenta(){
+    function guardarVenta(){
       Swal.fire({
-        title: "Desea cancelar la venta?",
+        title: "Confirmar venta",
         icon: "question",
         showCancelButton: true,
-        cancelButtonText: "No",
-        confirmButtonText: "Si"
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        reverseButtons:true
       })
       .then(function(result) {
         if(result.isConfirmed){
@@ -254,6 +255,26 @@
                         </div>
                       </div>
                     </div>
+                    
+        
+                    <script>
+                      function cancelarVenta(){
+                        Swal.fire({
+                          title: "Desea cancelar la venta",
+                          icon: "question",
+                          showCancelButton: true,
+                          cancelButtonText: "Cancelar",
+                          confirmButtonText: "Aceptar",
+                          reverseButtons:true
+                        })
+                        .then(function(result) {
+                          if(result.isConfirmed){
+                            //borrarMensajesError()
+                            window.location.href = "http://127.0.0.1:8000/laptops/";
+                          }
+                        })
+                      }
+                    </script>
 
                       <div class="modal-footer">
                       
@@ -268,23 +289,7 @@
                         >
                           CANCELAR
                         </button>
-                        <script>
-                          function guardarVenta(){
-                            Swal.fire({
-                              title: "Desea cancelar la venta?",
-                              icon: "question",
-                              showCancelButton: true,
-                              cancelButtonText: "No",
-                              confirmButtonText: "Si"
-                            })
-                            .then(function(result) {
-                              if(result.isConfirmed){
-                                //borrarMensajesError()
-                                window.location.href = "http://127.0.0.1:8000/laptops/";
-                              }
-                            })
-                          }
-                        </script>
+                       
                         <button
                           class="btn btn-primary js-tooltip"
                           id="btnGuardar"

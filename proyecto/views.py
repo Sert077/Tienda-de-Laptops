@@ -102,7 +102,7 @@ def laptops(request):
                 Q(descripcion = queryset)
                 ).distinct()
             else:
-                messages.add_message(request= request, level= messages.ERROR, message="No se encontro ese resultado")
+                messages.add_message(request, messages.ERROR, "No se encontro ese resultado")
         for laptop in laptops:
             ruta_fallida =  str(laptop.imagen_1)
             cadena_eliminar = 'proyecto'
@@ -174,7 +174,7 @@ def venderLaptop(request, id=None):
                 ci=request.POST['ci'],
                 telefono=request.POST['telefono'],
             )
-            messages.success(request, f"¡La venta ha sido registrada exitosamente!")
+            messages.add_message(request, messages.WARNING, f"¡La venta ha sido registrada exitosamente!")
             return redirect("laptops")
         
 
