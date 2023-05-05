@@ -1,68 +1,78 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'styles/busqueda.css' %}">
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="{% static 'styles/busqueda.css' %}">
   
   
-  <div class="busqueda">
-    
-    
-    <div class="row">
-      
-      <div class="col-md-12 search">
-        
-        <form method="get">
-          
-          <div id="custom-search-input">
-            
-            <div class="input-group col-md-12">
-              
-              <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value = "{{request.GET.buscar}}">
-              
-              <span class="input-group-list">
-                <i class="icon icon-search"></i>
-                
-              </span>
-              <div class="posboton">
-                <button class="botonbuscar" >Buscar</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      
-    </div>
 
-    
+  
+  <div class="box">
+    <div class="container-4">
+      <form method="get">
+        <input type="text" id="search" placeholder="BUSCAR" name="buscar" value = "{{request.GET.buscar}}" maxlength="20"
+                        pattern="[a-zA-Z]+" spellcheck = "false" autocomplete="off"/>
+      <button class="icon"></button>
+      </form>  
     </div>
-    
-  </div> 
-  
-  
-  
-  <head>  
-    
-  </head> 
-  
+  </div>
+
 {% if messages %}
-    {% for message in messages %}
-        <script>
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+         
+         <script>
+           console.log('verificar el mensaej')
+             Swal.fire({
 
-          console.log('verificar el mensaej')
-            Swal.fire({
+                  title: "Se añadió correctamente la Laptop",
+                  icon: "success",
+                  timer: 3000,
+                  timerProgressBar: true,
+                  showConfirmButton: false,
+             });
+         </script>
+    {% elif message.tags == 'error' %}
+    <script>
+        Swal.fire({
 
-                title: "Se añadió correctamente la Laptop",
-                icon: "success",
-                timer: 3000,
-                timerProgressBar: true,
-                showConfirmButton: false,
-            });
-        </script>
-    {% endfor %}
+             title: "No se encontró ese resultado",
+             icon: "error",
+             timer: 3000,
+             timerProgressBar: true,
+             showConfirmButton: false,
+        });
+    </script>
+    {% elif message.tags == 'warning' %}
+    <script>
+      Swal.fire({
+        title: "Confirmar venta",
+        icon: "question",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        reverseButtons:true
+      })
+      .then(function(result) {
+        if(result.isConfirmed){
+          Swal.fire({
+          title: "¡La venta ha sido registrada exitosamente!",
+          icon: "success",
+          timer: 9000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          });
+          window.location.href = "http://127.0.0.1:8000/laptops/";
+        }
+      })
+        
+    </script>
+    {% endif %}
+  {% endfor %}
 {% endif %}
-
 
 {% block js %}
 <script>

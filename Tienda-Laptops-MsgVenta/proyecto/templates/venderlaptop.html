@@ -10,18 +10,13 @@
   <script>
     function guardarVenta(){
       Swal.fire({
-        title: "Confirmar venta",
-        icon: "question",
-        showCancelButton: true,
-        cancelButtonText: "Cancelar",
-        confirmButtonText: "Aceptar",
-        reverseButtons:true
+                title: "Los datos no han sido insertados correctamente",
+                  icon: "info",
+                  timer: 3000,
+                  timerProgressBar: true,
+                  showConfirmButton: false,
       })
-      .then(function(result) {
-        if(result.isConfirmed){
-          window.location.href = "http://127.0.0.1:8000/laptops/";
-        }
-      })
+      
     }
   </script>
   {% endblock %}
@@ -269,7 +264,6 @@
                         })
                         .then(function(result) {
                           if(result.isConfirmed){
-                            //borrarMensajesError()
                             window.location.href = "http://127.0.0.1:8000/laptops/";
                           }
                         })
@@ -294,6 +288,7 @@
                           class="btn btn-primary js-tooltip"
                           id="btnGuardar"
                           title=""
+                          
                           style="background-color: #243757;margin-right: 40px;"
                           onclick="guardarVenta()"
                         >
