@@ -22,7 +22,7 @@
 
 <body>
 
-  <header>
+  <header style="display:flex;">
     <span>CompuSpace</span>
     <div class="sesion" style="display: flex; justify-content: flex-end;">
       {% if user.is_authenticated %}
@@ -47,12 +47,12 @@
     </div>
   </header>
 
-  <div class="contenedor1" style="justify-content: center; display: flex;">
+  <div class="contenedor1" style=" display: flex; height: 87vh;">
     <nav>
       <ul style="padding: 0px;">
 
         <li>
-          <a href="{% url 'index' %}">
+          <a href="{% url 'index' %}" >
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house"
               viewBox="0 0 16 16" style="color:white">
               <path
