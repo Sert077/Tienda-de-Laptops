@@ -95,10 +95,14 @@ def laptops(request):
         laptops = Registrar_Laptop.objects.all()
         lista_rutas = []
         if queryset:
-            laptops = Registrar_Laptop.objects.filter(
-            Q(marca__icontains = queryset)|
-            Q(descripcion = queryset)
-            ).distinct()
+            if Registrar_Laptop.objects.filter(
+            Q(marca__icontains = queryset)):
+                laptops = Registrar_Laptop.objects.filter(
+                Q(marca__icontains = queryset)|
+                Q(descripcion = queryset)
+                ).distinct()
+            else:
+                messages.add_message(request= request, level= messages.ERROR, message="No se encontro ese resultado")
         for laptop in laptops:
             ruta_fallida =  str(laptop.imagen_1)
             cadena_eliminar = 'proyecto'
