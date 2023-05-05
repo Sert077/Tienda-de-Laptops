@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{% static 'styles/estilofor.css' %}">
 
-<section class="contenido aliniado">
+<section class="contenido">
     {% for laptop, ruta in laptops_rutas %}
     <div class="contenedor-foto">
       <a  href="{% url 'informacionLaptop' laptop.id %}" class="descripcion">{{ laptop.nombre }}</a>
