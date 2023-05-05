@@ -8,36 +8,58 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   
-  
+
   
   <div class="box">
     <div class="container-4">
       <form method="get">
-        <input type="text" id="search" placeholder="BUSCAR" name="buscar" value = "{{request.GET.buscar}}"/>
+        <input type="text" id="search" placeholder="BUSCAR" name="buscar" value = "{{request.GET.buscar}}" maxlength="20"
+                        pattern="[a-zA-Z]+" spellcheck = "false" autocomplete="off"/>
       <button class="icon"></button>
       </form>  
     </div>
   </div>
 
-
-  
 {% if messages %}
-    {% for message in messages %}
-        <script>
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+         
+         <script>
+           console.log('verificar el mensaej')
+             Swal.fire({
 
-          console.log('verificar el mensaej')
-            Swal.fire({
+                  title: "Se añadió correctamente la Laptop",
+                  icon: "success",
+                  timer: 3000,
+                  timerProgressBar: true,
+                  showConfirmButton: false,
+             });
+         </script>
+    {% elif message.tags == 'error' %}
+    <script>
+        Swal.fire({
 
-                title: "Se añadió correctamente la Laptop",
-                icon: "success",
-                timer: 3000,
-                timerProgressBar: true,
-                showConfirmButton: false,
-            });
-        </script>
-    {% endfor %}
+             title: "No se encontró ese resultado",
+             icon: "error",
+             timer: 3000,
+             timerProgressBar: true,
+             showConfirmButton: false,
+        });
+    </script>
+    {% elif message.tags == 'warning' %}
+    <script>
+        Swal.fire({
+
+             title: "¡La venta ha sido registrada exitosamente!",
+             icon: "success",
+             timer: 2000,
+             timerProgressBar: true,
+             showConfirmButton: false,
+        });
+    </script>
+    {% endif %}
+  {% endfor %}
 {% endif %}
-
 
 {% block js %}
 <script>
