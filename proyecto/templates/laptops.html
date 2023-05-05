@@ -48,14 +48,27 @@
     </script>
     {% elif message.tags == 'warning' %}
     <script>
-        Swal.fire({
-
-             title: "¡La venta ha sido registrada exitosamente!",
-             icon: "success",
-             timer: 2000,
-             timerProgressBar: true,
-             showConfirmButton: false,
-        });
+      Swal.fire({
+        title: "Confirmar venta",
+        icon: "question",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        reverseButtons:true
+      })
+      .then(function(result) {
+        if(result.isConfirmed){
+          Swal.fire({
+          title: "¡La venta ha sido registrada exitosamente!",
+          icon: "success",
+          timer: 9000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          });
+          window.location.href = "http://127.0.0.1:8000/laptops/";
+        }
+      })
+        
     </script>
     {% endif %}
   {% endfor %}
@@ -562,5 +575,3 @@
 
 
       {% endblock %}
- 
-
