@@ -10,7 +10,7 @@ urlpatterns = [
     path('modificarLaptop/<int:id>',views.modificarLaptop, name = "modificarLaptop"),
     path('venderLaptop/<int:id>',views.venderLaptop, name = "venderLaptop"),
     path('registroVentas/',views.registroVentas, name = "registroVentas"),
-
+    path('reporteVentas/',views.reporteVentas, name = "reporteVentas"),
 ]
 
 

@@ -25,6 +25,10 @@ def registroVentas(request):
         'ventas': ventas
     })
 
+@login_required
+def reporteVentas(request):
+    return render(request, "reporte_ventas.html")
+
 
 # Create your views here.
 

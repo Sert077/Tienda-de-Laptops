@@ -41,3 +41,6 @@ function borrarDatos() {
   });
   });
 }
+
+const nav = document.querySelector('nav');
+nav.style.height = '100vw';
