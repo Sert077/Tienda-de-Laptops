@@ -48,7 +48,7 @@ function cargarGrafico() {
 function drawChart() {
     arregloDatos = [];
     //Recupero los inputs que hay dentro del div datos
-    var datos = document.getElementById("datos").getElementsByTagName("input");
+    var datos = document.getElementById("datos").querySelectorAll(".serie, .valor");
     //El primer par [x,x] a insertar en arregloDatos debe ser info del grafico.
     //Esta info no es visible, por lo tanto es indistinto el valor que le asignemos
 

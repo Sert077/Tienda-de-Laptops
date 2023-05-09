@@ -20,18 +20,29 @@
                 Gráfico de Columnas
             </option>
         </select>
-        <input type="text" placeholder="Título del Gráfico" id="titulo">
+        <input type="text" placeholder="Laptops Vendidas" id="titulo">
         <div class="datos" id="datos">
+            <tr>
+                <th style="width: 10vw;">cant</th>
+                <th style="width: 50vw;">laptop</th>
+                <th style="width: 20vw;">total</th>
+            </tr>
             <div class="dato">
-                <input type="text" placeholder="Leyenda 1" class="serie">
-                <input type="text" placeholder="Valor 1" class="valor">
+                <input type="text" value="5" class="cantidad" readonly>
+                <input type="text" value="ROG strix" class="serie" readonly>
+                <input type="text" value="20000" class="valor" readonly>
             </div>
             <div class="dato">
-                <input type="text" placeholder="Leyenda 2" class="serie">
-                <input type="text" placeholder="Valor 2" class="valor">
+                <input type="text" value="8" class="cantidad"  readonly>
+                <input type="text" value="mac" class="serie" readonly>
+                <input type="text" value="32000" class="valor" readonly>
+            </div>
+            <div class="dato">
+                <input type="text" value="4" class="cantidad" readonly>
+                <input type="text" value="omen" class="serie" readonly>
+                <input type="text" value="16000" class="valor" readonly>
             </div>
         </div>
-        <button onclick="agregarDato()" class="agregar"> + </button>
         <button onclick="cargarGrafico()" class="crear-grafico">Crear Gráfico</button>
     </div>
     <div class="right">
