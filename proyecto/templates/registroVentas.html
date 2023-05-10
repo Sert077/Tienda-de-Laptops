@@ -3,8 +3,8 @@
 
 <link rel="stylesheet" href="{% static 'styles/estilos.css' %}" />
 {% block content %}
-<section style="padding-left: 4%;">
-    <h2 style="justify-content: center; padding-top: 18px; font-weight: bold;">Ventas Realizadas</h2>
+<section>
+    <h2>Ventas Realizadas</h2>
     <table class="tabla">
         <tr class="tr">
             <th class="cant th">CANT.</th>
@@ -26,7 +26,7 @@
             <td class="td">{{venta.cliente}}</td>
             <td class="td">{{venta.ci}}</td>
             <td class="td">{{venta.precio}}</td>
-            <td class="td">{{venta.precio}}</td>
+            <td class="td">{{venta.total}}</td>
         </tr>
         {% endfor %}
     </table>
