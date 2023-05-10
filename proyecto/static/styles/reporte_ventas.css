@@ -73,9 +73,22 @@ input {
 .right {
     float: left;
     border: 1px solid #000;
-    max-width: 605px;
+    max-width: 50vw;
     margin-left: 15px;
+    margin-top: 20px;
 }
 .modal-header {
     padding: 0.5rem 0.5rem;
+}
+.cant {
+    width: 100px;
+}
+.laptop {
+    width: 100px;
+}
+.total {
+    width: 100px;
+}
+body {
+    background-color: white;
 }

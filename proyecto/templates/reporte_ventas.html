@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'styles/reporte_ventas.css' %}">
   </head>
 
- <section class="contenido" style="grid-template-columns: none;">
+ <section class="contenido" style="grid-template-columns: none;background: white;">
 <div class="modal-header">
  <h4>Reporte de ventas</h4>
 </div>
@@ -20,12 +20,12 @@
                 Gráfico de Columnas
             </option>
         </select>
-        <input type="text" placeholder="Laptops Vendidas" id="titulo">
+        <input type="text" placeholder="Laptops Vendidas" id="titulo" readonly>
         <div class="datos" id="datos">
             <tr>
-                <th style="width: 10vw;">cant</th>
-                <th style="width: 50vw;">laptop</th>
-                <th style="width: 20vw;">total</th>
+                <th class="cant" >cant</th>
+                <th class="laptop" >laptop</th>
+                <th class="total" >total</th>
             </tr>
             <div class="dato">
                 <input type="text" value="5" class="cantidad" readonly>
