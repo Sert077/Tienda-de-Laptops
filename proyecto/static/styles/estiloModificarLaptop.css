@@ -10,3 +10,7 @@
 .justify-content-between {
     padding: 0.5rem 8rem;
 }
+
+.row>* {
+    padding-right: 0px;
+}
