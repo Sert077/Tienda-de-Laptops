@@ -1,55 +1,65 @@
 {% extends 'layouts/base.html' %}
- {% load static %} 
- {% block content %}
- <head>
+{% load static %}
+{% block content %}
+
+<head>
     <link rel="stylesheet" href="{% static 'styles/reporte_ventas.css' %}">
-  </head>
+</head>
 
- <section class="contenido" style="grid-template-columns: none;background: white;">
-<div class="modal-header">
- <h4>Reporte de ventas</h4>
-</div>
+<section class="contenido" style="grid-template-columns: none;background: white;">
+    <div class="modal-header">
+        <h4>Reporte de ventas</h4>
+    </div>
+    <div class="fechas">
+        <form action="#">
+            <span class="span">Fecha Inicio</span>
+            <input class="btn" type="date" name="fecha_inicio">
+            <span class="span">Fecha Fin</span>
+            <input class="btn" type="date" name="fecha_fin">
+            <input class="aceptar" type="submit" value="Aceptar">
+        </form>
+    </div>
+    <div>
+        <div class="left">
+            <select name="" id="tipo">
+                <option value="circular">
+                    Gráfico Circular
+                </option>
+                <option value="columna">
+                    Gráfico de Columnas
+                </option>
+            </select>
+            <input type="text" placeholder="Laptops Vendidas" id="titulo" readonly>
+            <div class="datos" id="datos">
 
-<div>
-    <div class="left">
-        <select name="" id="tipo">
-            <option value="circular">
-                Gráfico Circular
-            </option>
-            <option value="columna">
-                Gráfico de Columnas
-            </option>
-        </select>
-        <input type="text" placeholder="Laptops Vendidas" id="titulo" readonly>
-        <div class="datos" id="datos">
-            <tr>
-                <th class="cant" >cant</th>
-                <th class="laptop" >laptop</th>
-                <th class="total" >total</th>
-            </tr>
-            <div class="dato">
-                <input type="text" value="5" class="cantidad" readonly>
-                <input type="text" value="ROG strix" class="serie" readonly>
-                <input type="text" value="20000" class="valor" readonly>
+                <tr>
+                    <th class="cant">cant</th>
+                    <th class="laptop">laptop</th>
+                    <th class="total">total</th>
+                </tr>
+                <div class="dato">
+                    <input type="text" value="5" class="cantidad" readonly>
+                    <input type="text" value="ROG strix" class="serie" readonly>
+                    <input type="text" value="20000" class="valor" readonly>
+                </div>
+                <div class="dato">
+                    <input type="text" value="8" class="cantidad" readonly>
+                    <input type="text" value="mac" class="serie" readonly>
+                    <input type="text" value="32000" class="valor" readonly>
+                </div>
+                <div class="dato">
+                    <input type="text" value="4" class="cantidad" readonly>
+                    <input type="text" value="omen" class="serie" readonly>
+                    <input type="text" value="16000" class="valor" readonly>
+                </div>
             </div>
-            <div class="dato">
-                <input type="text" value="8" class="cantidad"  readonly>
-                <input type="text" value="mac" class="serie" readonly>
-                <input type="text" value="32000" class="valor" readonly>
-            </div>
-            <div class="dato">
-                <input type="text" value="4" class="cantidad" readonly>
-                <input type="text" value="omen" class="serie" readonly>
-                <input type="text" value="16000" class="valor" readonly>
-            </div>
+            <button onclick="cargarGrafico()" class="crear-grafico">Crear Gráfico</button>
         </div>
-        <button onclick="cargarGrafico()" class="crear-grafico">Crear Gráfico</button>
+        <div class="right">
+            <div id="piechart"></div>
+        </div>
     </div>
-    <div class="right">
-        <div id="piechart"></div>
-    </div>
-</div>
-    
+
     <script src="{% static '/scripts/reporte.js' %}"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </section>
