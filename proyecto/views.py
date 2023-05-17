@@ -17,6 +17,10 @@ def index(request):
     return render(request, "index.html")
 
 @login_required
+def usuarios(request):
+    return render(request, "usuarios.html")
+
+@login_required
 def registroVentas(request):
     ventas = vender_Laptop.objects.annotate(
         total=ExpressionWrapper(F('cantidad') * F('precio'), output_field=FloatField())

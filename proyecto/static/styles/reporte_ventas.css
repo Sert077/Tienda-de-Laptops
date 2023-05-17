@@ -92,3 +92,33 @@ input {
 body {
     background-color: white;
 }
+.fechas{
+    margin: 10px;
+}
+form{
+    display: flex;  
+    justify-content: center;
+    align-items: center; 
+}
+.btn{
+    width: 150px;
+    height: 30px;
+    border: 2px solid ;
+    margin-top: 10px;
+}
+.span{
+    margin: 5px;
+    font-size: 25px;
+    color: #000000;
+}
+.aceptar{
+    width: 150px;
+    height: 40px;
+    margin-left: 50px;
+    color: #fff;
+    background-color: #243757;
+    margin-top: 10px;
+}
+input{
+    padding-top: 10px;
+}
