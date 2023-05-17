@@ -176,25 +176,6 @@ h2{
     font-weight: bold;
 }
 
-.tabla{
-    border-collapse: separate;
-    border-spacing: 20px;
-    padding: 5px;
-    text-align: center;
-}
-.th{
-    background-color: #DADABD;
-    font-size: 16px;
-    height: 48px;
-    border-radius: 20px;
-    font-weight: bold;
-}
-.td{
-    background-color: #D9D9D9;
-    height: 48px;
-    border-radius: 20px;
-    text-align: center;
-}
 .modelo{
     width: 201px;
 }
