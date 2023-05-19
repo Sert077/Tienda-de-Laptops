@@ -22,7 +22,7 @@
 
 <body>
 
-  <header>
+  <header style="display:flex;">
     <span>CompuSpace</span>
     <div class="sesion" style="display: flex; justify-content: flex-end;">
       {% if user.is_authenticated %}
@@ -47,12 +47,12 @@
     </div>
   </header>
 
-  <div class="contenedor1" style="justify-content: center; display: flex;">
+  <div class="contenedor1" style=" display: flex; height: 87vh;">
     <nav>
       <ul style="padding: 0px;">
 
         <li>
-          <a href="{% url 'index' %}">
+          <a href="{% url 'index' %}" >
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house"
               viewBox="0 0 16 16" style="color:white">
               <path
@@ -62,6 +62,15 @@
           <a href="{% url 'index' %}" style="color: white !important; text-decoration: none">INICIO</a>
         </li>
         {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'usuarios' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color:white ;">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+          </a>
+          <a href="{% url 'usuarios' %}" style="color: white !important; text-decoration: none">USUARIOS</a>
+        </li>
         <li>
           <a href="{% url 'laptops' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-layers" viewBox="0 0 16 16" style="color: white;">
@@ -80,6 +89,14 @@
             </svg>
           </a>
           <a href="{% url 'registroVentas' %}" style="color: white !important; text-decoration: none">VENTAS</a>
+        </li>
+        <li>
+          <a href="{% url 'reporteVentas' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16" style="color: white;">
+              <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
+            </svg>
+          </a>
+          <a href="{% url 'reporteVentas' %}" style="color: white !important; text-decoration: none">REPORTE</a>
         </li>
         {% endif %}
       </ul>

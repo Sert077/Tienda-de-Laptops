@@ -19,6 +19,7 @@
       </form>  
     </div>
   </div>
+  
 
 {% if messages %}
   {% for message in messages %}
@@ -48,14 +49,27 @@
     </script>
     {% elif message.tags == 'warning' %}
     <script>
-        Swal.fire({
-
-             title: "¡La venta ha sido registrada exitosamente!",
-             icon: "success",
-             timer: 2000,
-             timerProgressBar: true,
-             showConfirmButton: false,
-        });
+      Swal.fire({
+        title: "Confirmar venta",
+        icon: "question",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        reverseButtons:true
+      })
+      .then(function(result) {
+        if(result.isConfirmed){
+          Swal.fire({
+          title: "¡La venta ha sido registrada exitosamente!",
+          icon: "success",
+          timer: 9000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          });
+          window.location.href = "http://127.0.0.1:8000/laptops/";
+        }
+      })
+        
     </script>
     {% endif %}
   {% endfor %}
@@ -97,26 +111,29 @@
 </script>
 {% endblock %}
 
-<div class="ciclo">
-  <section class="contenido aliniado">
+<div class="ciclo" style="position: inherit; padding-top: 35px;">
+  <section class="guardaLaptops" >
     {% for laptop, ruta in laptops_rutas %}
     <div class="contenedor-foto">
-      <a style="color: black; text-decoration: none;" href="{% url 'informacionLaptop' laptop.id %}" class="descripcion">{{ laptop.nombre }}</a>
+      <a style="color: black; text-decoration: none;" href="{% url 'informacionLaptop' laptop.id %}"
+        class="descripcion">{{ laptop.nombre }}</a>
       <a href="{% url 'informacionLaptop' laptop.id %}">
-          <img src="{{ ruta }}" width="200px" height="200px" alt="" />
+        <img src="{{ ruta }}" width="200px" height="200px" alt="" />
       </a>
-      <div style="background-color: #DaD5B7;" >
-          <h6 class="descripcion" style="font-size: 18px;width: 100%;">Marca:{{ laptop.marca }}</h6>
-          <h6 class="descripcion" style="font-size: 18px;width: 100%;">Modelo: {{ laptop.modelo }}</h6>
-          <h6 class="precio" style="font-size: 18px;width: 100%;">Precio: {{ laptop.precio }} bs</h6>
-          <h6 class="precio" style="font-size: 18px;width: 100%;"> Stock: {{ laptop.stock }}</h6>
+      <div style="background-color: #DaD5B7;">
+        <h6 class="descripcion" style="font-size: 18px;width: 100%;">Marca:{{ laptop.marca }}</h6>
+        <h6 class="descripcion" style="font-size: 18px;width: 100%;">Modelo: {{ laptop.modelo }}</h6>
+        <h6 class="precio" style="font-size: 18px;width: 100%;">Precio: {{ laptop.precio }} bs</h6>
+        <h6 class="precio" style="font-size: 18px;width: 100%;"> Stock: {{ laptop.stock }}</h6>
       </div>
-      <div class="contenedor_botones" >
-      <button style="background-color: #314755;"><a style="color: white;" href="{% url 'modificarLaptop' laptop.id %}" >Editar 
-      </a></button>
+      <div class="contenedor_botones">
+        <button style="background-color: #314755;"><a style="color: white;"
+            href="{% url 'modificarLaptop' laptop.id %}">Editar
+          </a></button>
 
-      <button style="background-color: #56FE53;"><a style="color: white;" href="{% url 'venderLaptop' laptop.id %}" >Vender 
-      </a></button>
+        <button style="background-color: #56FE53;"><a style="color: white;"
+            href="{% url 'venderLaptop' laptop.id %}">Vender
+          </a></button>
 
       </div>
       
@@ -560,7 +577,9 @@
   </div>
 </div>
 
+<script>
+  const nav = document.querySelector('nav');
+  nav.style.height = '100vw';
+</script>
 
       {% endblock %}
- 
-

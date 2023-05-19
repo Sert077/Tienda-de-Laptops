@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles/estilosUsuarios.css'%}">
+</head>
+<section>
+    <div class="titulo">
+        <h2>Lista de Empleados</h2>
+    </div>
+    <div class="tb">
+        <table class="tabla">
+            <tr class="">
+                <th>Nro EMPLEADO</th>
+                <th>NOMBRE USUARIO</th>
+                <th>EDITAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+            <tr>
+                <td class="tdd">Empleado1</td>
+                <td class="tdd">EmpleadoX</td>
+                <td class="tdd"><button class="btn1">Editar</button></td>
+                <td class="tdd"><button class="btn1">Eliminar</button></td>
+            </tr>
+            <tr>
+                <td class="tdd">Empleado1</td>
+                <td class="tdd">EmpleadoX</td>
+                <td class="tdd"><button class="btn1">Editar</button></td>
+                <td class="tdd"><button class="btn1">Eliminar</button></td>
+            </tr>
+        </table>
+    </div>
+    <a href="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-plus-circle"
+            viewBox="0 0 16 16" style="color:#314755 ; position: fixed; top:87%; left: 93%;">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+        </svg>
+    </a>
+</section>
+{% endblock %}

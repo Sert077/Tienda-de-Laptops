@@ -1,9 +1,10 @@
 .fondo{
-    background-image: url('/static/imagenes/bloom.jpg');
+    background-image: url(/static/imagenes/bloom.jpg);
+    background-size: cover;
     background-position: center center;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-color: #020b1a;
-    background-attachment:local;
+    background-attachment: local;
     overflow: hidden;
 }
 #contenedor {

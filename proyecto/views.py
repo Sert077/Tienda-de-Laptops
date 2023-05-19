@@ -11,10 +11,16 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q 
 from django.db.models import F, ExpressionWrapper, FloatField
+from django.shortcuts import render
+from .models import vender_Laptop
 
 # Create your views here.
 def index(request):
     return render(request, "index.html")
+
+@login_required
+def usuarios(request):
+    return render(request, "usuarios.html")
 
 @login_required
 def registroVentas(request):
@@ -24,6 +30,39 @@ def registroVentas(request):
     return render(request, "registroVentas.html",{
         'ventas': ventas
     })
+
+@login_required
+def reporteVentas(request):
+    fecha_inicio = request.GET.get('fecha_inicio')
+    fecha_fin = request.GET.get('fecha_fin')
+
+    if fecha_inicio and fecha_fin:
+        ventas = vender_Laptop.objects.filter(fecha__range=[fecha_inicio, fecha_fin])
+
+        no_ventas = False
+        if not ventas.exists():
+            no_ventas = True
+
+        ventas_suma = {}
+        for venta in ventas:
+            if venta.marca in ventas_suma:
+                ventas_suma[venta.marca]['cantidad'] += venta.cantidad
+                ventas_suma[venta.marca]['precio'] += venta.precio
+            else:
+                ventas_suma[venta.marca] = {
+                    'cantidad': venta.cantidad,
+                    'precio': venta.precio
+                }
+
+        context = {
+            'ventas': ventas_suma,
+            'no_ventas': no_ventas
+        }
+    else:
+        context = {}
+
+    return render(request, "reporte_ventas.html", context)
+
 
 
 # Create your views here.
