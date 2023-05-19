@@ -48,11 +48,11 @@
                             <th class="total">Total</th>
                         </tr>
                         {% for marca, datos in ventas.items %}
-                            <tr>
-                                <td class="cantidad">{{ datos.cantidad }}</td>
-                                <td class="marca">{{ marca }}</td>
-                                <td class="valor">{{ datos.precio }}</td>
-                            </tr>
+                        <div class="dato">
+                            <input type="text" value="{{ datos.cantidad }}" class="cantidad" readonly>
+                            <input type="text" value="{{ marca }}" class="serie" readonly>
+                            <input type="text" value="{{ datos.precio }}" class="valor" readonly>
+                        </div>
                         {% endfor %}
                     </table>
                 </div>
