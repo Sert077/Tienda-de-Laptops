@@ -41,12 +41,11 @@
                 <p>No se encontraron ventas para las fechas ingresadas.</p>
             {% else %}
                 <div class="datos" id="datos">
-                    <table>
-                        <tr>
-                            <th class="cant">Cant</th>
-                            <th class="laptop">Laptop</th>
-                            <th class="total">Total</th>
-                        </tr>
+                    <div class="row">
+                        <div class="col-sm-2">cant</div>
+                        <div class="col-sm-6">laptop</div>
+                        <div class="col-sm-4">total</div>
+                      </div>
                         {% for marca, datos in ventas.items %}
                         <div class="dato">
                             <input type="text" value="{{ datos.cantidad }}" class="cantidad" readonly>
@@ -54,7 +53,6 @@
                             <input type="text" value="{{ datos.precio }}" class="valor" readonly>
                         </div>
                         {% endfor %}
-                    </table>
                 </div>
                 <button onclick="cargarGrafico()" class="crear-grafico">Crear Gráfico</button>
             {% endif %}
