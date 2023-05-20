@@ -77,8 +77,8 @@ i{
 
 
 span{
-    padding-left: 60px;
-    color: white;
+    padding-left: 60px;/*Corregir para apegar los span*/
+    color: rgb(255, 255, 255);
     font-size: 28px;
 }
 nav{

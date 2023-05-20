@@ -13,6 +13,9 @@ from django.db.models import Q
 from django.db.models import F, ExpressionWrapper, FloatField
 
 # Create your views here.
+def registro(request):
+    return render(request, "registro.html")
+
 def index(request):
     return render(request, "index.html")
 
