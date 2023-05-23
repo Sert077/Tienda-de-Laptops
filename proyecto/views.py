@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q 
 from django.db.models import F, ExpressionWrapper, FloatField
 from django.shortcuts import render
-from .models import vender_Laptop
+from .models import vender_Laptop, registrar_usuarios
 
 # Create your views here.
 def index(request):
@@ -22,7 +22,21 @@ def index(request):
 def usuarios(request):
     return render(request, "usuarios.html")
 
+
 def registro(request):
+    if request.method == 'POST':
+        nombemp = request.POST.get('nombre')
+        ciemp = request.POST.get('ci')
+        usuario = request.POST.get('usuario')
+        password = request.POST.get('contraseña')
+        confirmar_contraseña = request.POST.get('confirmar_contraseña')
+
+        if password == confirmar_contraseña:
+            
+            nuevo_usuario = registrar_usuarios(nombre=nombemp, ciemp=ciemp, usuario=usuario, password=password)
+            nuevo_usuario.save()
+            return redirect('registro') 
+
     return render(request, "registro.html")
 
 @login_required
