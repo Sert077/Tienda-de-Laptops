@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles/registro.css' %}">
+
+<section>
+    <h1>Registrar nuevo empleado</h1>
+
+    <div class="line"></div>
+
+    <form action="">
+        <div class="container-form"></div>
+        <label class="input-form" for="name">Nombre de Empleado:<span  class="asterisco">*</span></label>
+        <input class="input-form" type="text" name="name" id="name" required pattern="^[A-Za-z]{15,80}$">
+        <label class="input-form" for="ci">CI:<span class="asterisco">*</span></label>
+        <input class="input-form" type="text" name="ci" id="ci" required pattern="^[0-9A-Z]{7,12}">
+        <label class="input-form" for="user">Nombre de Usuario:<span class="asterisco">*</span></label>
+        <input class="input-form" type="text" name="user" id="user" required>
+        <label class="input-form" for="password">Contraseña:<span class="asterisco">*</span></label>
+        <input class="input-form" type="password" name="password" id="password" required>
+        <label class="input-form" for="confpass">Confirmar Contraseña:<span class="asterisco">*</span></label>
+        <input class="input-form" type="password" name="confpass" id="confpass" required>
+        <input class="cancelar" type="button" value="Cancelar" onclick="">
+        <input class="registrar" type="submit" value="Registrar">
+        </div>
+    </form>
+</section>
+{% endblock %}

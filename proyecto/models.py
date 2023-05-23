@@ -61,3 +61,13 @@ class vender_Laptop(models.Model):
     direccion = models.CharField(max_length=25)
     ci = models.IntegerField()
     telefono = models.IntegerField()
+
+
+class crear_factura(models.Model):
+    nombre = models.CharField(max_length=20)  
+    modelo = models.CharField(max_length=20,unique=False)     
+    cantidad = models.IntegerField()
+    precio = models.IntegerField()
+    fecha = models.DateField()
+    ci = models.IntegerField()
+    nroDeFact = models.IntegerField()

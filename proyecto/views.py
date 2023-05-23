@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Registrar_Laptop
-from .models import vender_Laptop
+from .models import vender_Laptop, crear_factura
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
@@ -22,6 +22,9 @@ def index(request):
 def usuarios(request):
     return render(request, "usuarios.html")
 
+def registro(request):
+    return render(request, "registro.html")
+
 @login_required
 def registroVentas(request):
     ventas = vender_Laptop.objects.annotate(
@@ -30,6 +33,15 @@ def registroVentas(request):
     return render(request, "registroVentas.html",{
         'ventas': ventas
     })
+
+@login_required
+
+def registroFacturas(request):
+    facturas = crear_factura.objects.all()
+    return render(request, "registroFacturas.html",{
+            'facturas': facturas
+        })
+
 
 @login_required
 def reporteVentas(request):
