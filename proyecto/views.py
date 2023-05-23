@@ -20,8 +20,8 @@ def index(request):
 
 @login_required
 def usuarios(request):
-    return render(request, "usuarios.html")
-
+    usuarios = registrar_usuario.objects.all()
+    return render(request, "usuarios.html",{'usuarios':usuarios})
 
 def registro(request):
     if request.method == 'POST':
