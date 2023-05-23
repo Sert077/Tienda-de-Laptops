@@ -72,7 +72,7 @@ class crear_factura(models.Model):
     ci = models.IntegerField()
     nroDeFact = models.IntegerField()
 
-class registrar_usuarios(models.Model):
+class registrar_usuario(models.Model):
     nombemp = models.CharField(max_length=80,unique=True)
     ciemp = models.IntegerField(unique=True)
     usuario = models.CharField(max_length=10,unique=True)
