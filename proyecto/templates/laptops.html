@@ -129,10 +129,12 @@
         <h6 class="precio" style="font-size: 18px;width: 100%;"> Stock: {{ laptop.stock }}</h6>
       </div>
       <div class="contenedor_botones">
+        {% if request.user.is_superuser %}
         <button class="hh" style="background-color: #314755; border: 0px; border-radius: 10px; width: 100px;">
           <a style="color: white;font-weight: bolder;"
             href="{% url 'modificarLaptop' laptop.id %}">Editar
           </a></button>
+          {% endif %}
         <button class="hh" style="background-color: #56FE53; border: 0px; border-radius: 10px; width: 100px; ">
           <a style="color: white; font-weight: bolder;"
             href="{% url 'venderLaptop' laptop.id %}">Vender
