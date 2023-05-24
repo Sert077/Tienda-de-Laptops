@@ -37,7 +37,7 @@ def registro(request):
             nuevo_usuario = registrar_usuario.objects.create(nombemp=nombemp, ciemp=ciemp, usuario=usuario, password=password)
 
             nuevo_usuario.save()
-            
+            messages.success(request, f"¡El usuario ha sido registrada exitosamente!")
             return redirect('registro') 
 
     return render(request, "registro.html")

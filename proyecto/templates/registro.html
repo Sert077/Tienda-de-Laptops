@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'styles/registro.css' %}">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <section>
     <h1>Registrar nuevo empleado</h1>
 
@@ -21,9 +23,43 @@
         <input class="input-form" type="password" name="password" id="contraseña" required>
         <label class="input-form" for="confirmar_contraseña">Confirmar Contraseña:<span class="asterisco">*</span></label>
         <input class="input-form" type="password" name="confirmar_password" id="confirmar_contraseña" required>
-        <input class="cancelar" type="button" value="Cancelar" onclick="">
+        <input class="cancelar" type="button" value="Cancelar" onclick="cancelarRegistro()">
         <input class="registrar" type="submit" value="Registrar">
         </div>
     </form>
 </section>
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags == 'success' %}    
+         <script>
+           console.log('verificar el mensaje')
+             Swal.fire({
+                  title: "El empleado ha sido registrado correctamente",
+                  icon: "success",
+                  timer: 4000,
+                  timerProgressBar: true,
+                  showConfirmButton: false,
+             });
+         </script>
+         {% endif %}
+  {% endfor %}
+{% endif %}
+{% block js %}
+<script>
+    function cancelarRegistro(){
+    Swal.fire({
+      title: "Está seguro(a) que desea cancelar el registro",
+      icon: "question",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Si"
+    })
+    .then(function(result) {
+        if(result.isConfirmed){
+          window.location.href = "http://127.0.0.1:8000/usuarios/";
+        }
+    })
+  }
+</script>
+{% endblock %}
 {% endblock %}
