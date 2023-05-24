@@ -117,9 +117,11 @@
     <div class="contenedor-foto">
       <a style="color: black; text-decoration: none;" href="{% url 'informacionLaptop' laptop.id %}"
         class="descripcion">{{ laptop.nombre }}</a>
-      <a href="{% url 'informacionLaptop' laptop.id %}">
-        <img src="{{ ruta }}" width="200px" height="200px" alt="" />
-      </a>
+        <div style="max-height: 100%;">
+          <a href="{% url 'informacionLaptop' laptop.id %}">
+            <img src="{{ ruta }}" style="max-height: 100%;width: auto;" width="150px" height="150px" alt="" />
+          </a>
+        </div>
       <div style="background-color: #DaD5B7;">
         <h6 class="descripcion" style="font-size: 18px;width: 100%;">Marca:{{ laptop.marca }}</h6>
         <h6 class="descripcion" style="font-size: 18px;width: 100%;">Modelo: {{ laptop.modelo }}</h6>
@@ -127,11 +129,12 @@
         <h6 class="precio" style="font-size: 18px;width: 100%;"> Stock: {{ laptop.stock }}</h6>
       </div>
       <div class="contenedor_botones">
-        <button style="background-color: #314755;"><a style="color: white;"
+        <button class="hh" style="background-color: #314755; border: 0px; border-radius: 10px; width: 100px;">
+          <a style="color: white;font-weight: bolder;"
             href="{% url 'modificarLaptop' laptop.id %}">Editar
           </a></button>
-
-        <button style="background-color: #56FE53;"><a style="color: white;"
+        <button class="hh" style="background-color: #56FE53; border: 0px; border-radius: 10px; width: 100px; ">
+          <a style="color: white; font-weight: bolder;"
             href="{% url 'venderLaptop' laptop.id %}">Vender
           </a></button>
 

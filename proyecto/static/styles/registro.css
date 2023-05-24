@@ -68,3 +68,19 @@ form {
 
     line-height:100%;
 }
+
+.error,
+.error-message {
+  border-color: red;
+}
+
+.error::placeholder,
+.error-message::placeholder {
+  color: red;
+}
+
+.error + .error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}

@@ -13,6 +13,7 @@ from django.db.models import Q
 from django.db.models import F, ExpressionWrapper, FloatField
 from django.shortcuts import render
 from .models import vender_Laptop, registrar_usuario
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -20,8 +21,8 @@ def index(request):
 
 @login_required
 def usuarios(request):
-    return render(request, "usuarios.html")
-
+    usuarios = registrar_usuario.objects.all()
+    return render(request, "usuarios.html",{'usuarios':usuarios})
 
 def registro(request):
     if request.method == 'POST':
@@ -31,13 +32,31 @@ def registro(request):
         password = request.POST.get('password')
         confirmar_contraseña = request.POST.get('confirmar_password')
 
-        if password == confirmar_contraseña:
-            
-            nuevo_usuario = registrar_usuario.objects.create(nombemp=nombemp, ciemp=ciemp, usuario=usuario, password=password)
+        errors_dict = {}
 
+        # Verificar si los datos ya están registrados
+        if registrar_usuario.objects.filter(nombemp=nombemp).exists():
+            errors_dict['nombemp'] = 'El nombre de empleado ya está registrado.'
+        if registrar_usuario.objects.filter(ciemp=ciemp).exists():
+            errors_dict['ciemp'] = 'El CI ya está registrado.'
+        if registrar_usuario.objects.filter(usuario=usuario).exists():
+            errors_dict['usuario'] = 'El nombre de usuario ya está registrado.'
+
+        if password != confirmar_contraseña:
+            errors_dict['password'] = 'La contraseña y la confirmación de contraseña no coinciden.'
+
+        if len(errors_dict) == 0:
+            nuevo_usuario = registrar_usuario.objects.create(nombemp=nombemp, ciemp=ciemp, usuario=usuario, password=password)
             nuevo_usuario.save()
-            
-            return redirect('registro') 
+            return redirect('registro')
+
+        context = {
+            'errors_dict': errors_dict,
+            'nombemp': nombemp,
+            'ciemp': ciemp,
+            'usuario': usuario
+        }
+        return render(request, "registro.html", context)
 
     return render(request, "registro.html")
 
@@ -270,3 +289,12 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect("index")
+
+
+
+@login_required
+def eliminarUsuario(request, id):
+    usuario = get_object_or_404(registrar_usuario, id=id)
+    usuario.delete()
+    messages.success(request, f"El usuario {usuario.usuario} ha sido eliminado exitosamente.")
+    return redirect("usuarios")
