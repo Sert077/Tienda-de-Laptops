@@ -14,7 +14,9 @@ urlpatterns = [
     path('registroFacturas/',views.registroFacturas, name = "registroFacturas"),
     path('usuarios/',views.usuarios, name = "usuarios"),
     path('eliminarUsuario/<int:id>', views.eliminarUsuario, name="eliminarUsuario"),
-    path('registro/', views.registro, name="registro")
+    path('registro/', views.registro, name="registro"),
+    path('factura/', views.factura, name="factura")
+    
 ]
 
 

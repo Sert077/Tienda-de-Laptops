@@ -20,5 +20,8 @@ $(document).ready(function() {
           field.classList.remove("is-invalid");
     });
       var myButton = document.getElementById("btnGuardar");
-      myButton.click();
+      myButton.click(); 
+      
   }
+
+  

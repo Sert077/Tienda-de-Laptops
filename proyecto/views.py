@@ -48,6 +48,7 @@ def registro(request):
         if len(errors_dict) == 0:
             nuevo_usuario = registrar_usuario.objects.create(nombemp=nombemp, ciemp=ciemp, usuario=usuario, password=password)
             nuevo_usuario.save()
+            messages.success(request, f"¡El usuario ha sido registrada exitosamente!")
             return redirect('registro')
 
         context = {
@@ -290,7 +291,9 @@ def signout(request):
     logout(request)
     return redirect("index")
 
-
+@login_required
+def factura(request):
+    return render(request,"factura.html")
 
 @login_required
 def eliminarUsuario(request, id):
@@ -298,3 +301,4 @@ def eliminarUsuario(request, id):
     usuario.delete()
     messages.success(request, f"El usuario {usuario.usuario} ha sido eliminado exitosamente.")
     return redirect("usuarios")
+
