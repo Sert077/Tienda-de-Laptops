@@ -14,7 +14,7 @@
         {% csrf_token %}
         <div class="container-form">
           <label class="input-form" for="nombre">Nombre de Empleado:<span class="asterisco">*</span></label>
-          <input class="input-form{% if errors_dict.nombemp %} error{% endif %}" type="text" name="nombemp" id="nombemp" required pattern="^[A-Za-z]{15,80}$" placeholder="{% if errors_dict.nombemp %}{{ errors_dict.nombemp }}{% else %}{% endif %}">
+          <input class="input-form{% if errors_dict.nombemp %} error{% endif %}" type="text" name="nombemp" id="nombemp" required pattern="^[A-Za-z\s]{15,80}$" placeholder="{% if errors_dict.nombemp %}{{ errors_dict.nombemp }}{% else %}{% endif %}">
       </div>
 
       <div class="container-form">
