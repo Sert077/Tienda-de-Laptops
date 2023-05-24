@@ -62,6 +62,7 @@
           <a href="{% url 'index' %}" style="color: white !important; text-decoration: none">INICIO</a>
         </li>
         {% if user.is_authenticated %}
+        {% if request.user.is_superuser %}
         <li>
           <a href="{% url 'usuarios' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color:white ;">
@@ -71,6 +72,8 @@
           </a>
           <a href="{% url 'usuarios' %}" style="color: white !important; text-decoration: none">USUARIOS</a>
         </li>
+        {% endif %}
+        
         <li>
           <a href="{% url 'laptops' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-layers" viewBox="0 0 16 16" style="color: white;">
@@ -90,6 +93,8 @@
           </a>
           <a href="{% url 'registroVentas' %}" style="color: white !important; text-decoration: none">VENTAS</a>
         </li>
+        {% if request.user.is_superuser %}
+
         <li>
           <a href="{% url 'reporteVentas' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16" style="color: white;">
@@ -98,6 +103,8 @@
           </a>
           <a href="{% url 'reporteVentas' %}" style="color: white !important; text-decoration: none">REPORTE</a>
         </li>
+        {% endif %}
+
         <li>
           <a href="{% url 'registroFacturas' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16" style="color: white;">
