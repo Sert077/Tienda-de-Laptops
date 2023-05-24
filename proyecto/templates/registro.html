@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles/registro.css' %}">
+
+<section>
+    <h1>Registrar nuevo empleado</h1>
+
+    <div class="line"></div>
+
+    <form action="{% url 'registro' %}" method="POST">
+        {% csrf_token %}
+        <div class="container-form"></div>
+        <label class="input-form" for="nombre">Nombre de Empleado:<span class="asterisco">*</span></label>
+        <input class="input-form" type="text" name="nombemp" id="nombemp" required pattern="^[A-Za-z]{15,80}$">
+        <label class="input-form" for="ci">CI:<span class="asterisco">*</span></label>
+        <input class="input-form" type="text" name="ciemp" id="ciemp" required pattern="^[0-9A-Z]{7,12}">
+        <label class="input-form" for="usuario">Nombre de Usuario:<span class="asterisco">*</span></label>
+        <input class="input-form" type="text" name="usuario" id="usuario" required>
+        <label class="input-form" for="contraseña">Contraseña:<span class="asterisco">*</span></label>
+        <input class="input-form" type="password" name="password" id="contraseña" required>
+        <label class="input-form" for="confirmar_contraseña">Confirmar Contraseña:<span class="asterisco">*</span></label>
+        <input class="input-form" type="password" name="confirmar_password" id="confirmar_contraseña" required>
+        <input class="cancelar" type="button" value="Cancelar" onclick="">
+        <input class="registrar" type="submit" value="Registrar">
+        </div>
+    </form>
+</section>
+{% endblock %}
