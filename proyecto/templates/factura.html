@@ -347,7 +347,7 @@
                           id="btnGuardar"
                           title=""
                           style="background-color: #243757;margin-right: 40px;"
-                          onclick="borrarMensajesError()"
+                          onclick="imprimir()"
                         >
                         IMPRIMIR FACTURA      
                         </button>
@@ -367,4 +367,9 @@
     <!-- </section>
     </section>
     -->
+<script>
+  function imprimir(){
+    window.print();
+  }
+</script>
     {% endblock %}
