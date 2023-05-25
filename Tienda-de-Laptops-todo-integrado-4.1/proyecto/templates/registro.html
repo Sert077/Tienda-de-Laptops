@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles/registro.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<section>
+    <h1>Registrar nuevo empleado</h1>
+
+    <div class="line"></div>
+
+    <form action="{% url 'registro' %}" method="POST">
+        {% csrf_token %}
+        <div class="container-form">
+          <label class="input-form" for="nombre">Nombre de Empleado:<span class="asterisco">*</span></label>
+          <input class="input-form{% if errors_dict.nombemp %} error{% endif %}" type="text" name="nombemp" id="nombemp" required pattern="^[A-Za-z]{15,80}$" placeholder="{% if errors_dict.nombemp %}{{ errors_dict.nombemp }}{% else %}{% endif %}">
+      </div>
+
+      <div class="container-form">
+          <label class="input-form" for="ci">CI:<span class="asterisco">*</span></label>
+          <input class="input-form{% if errors_dict.ciemp %} error-message{% endif %}" type="text" name="ciemp" id="ciemp" required pattern="^[0-9A-Z]{7,12}" placeholder="{% if errors_dict.ciemp %}{{ errors_dict.ciemp }}{% else %}{% endif %}">
+      </div>
+
+      <div class="container-form">
+          <label class="input-form" for="usuario">Nombre de Usuario:<span class="asterisco">*</span></label>
+          <input class="input-form{% if errors_dict.usuario %} error{% endif %}" type="text" name="usuario" id="usuario" required placeholder="{% if errors_dict.usuario %}{{ errors_dict.usuario }}{% else %}{% endif %}">
+      </div>
+
+      <div class="container-form">
+          <label class="input-form" for="contraseña">Contraseña:<span class="asterisco">*</span></label>
+          <input class="input-form{% if errors_dict.password %} error{% endif %}" type="password" name="password" id="contraseña" required placeholder="{% if errors_dict.password %}{{ errors_dict.password }}{% else %}{% endif %}">
+      </div>
+
+      <div class="container-form">
+          <label class="input-form" for="confirmar_contraseña">Confirmar Contraseña:<span class="asterisco">*</span></label>
+          <input class="input-form" type="password" name="confirmar_password" id="confirmar_contraseña" required>
+      </div>
+        <input class="cancelar" type="button" value="Cancelar" onclick="cancelarRegistro()">
+        <input class="registrar" type="submit" value="Registrar">
+        </div>
+    </form>
+</section>
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags == 'success' %}    
+         <script>
+           console.log('verificar el mensaje')
+             Swal.fire({
+                  title: "El empleado ha sido registrado correctamente",
+                  icon: "success",
+                  timer: 4000,
+                  timerProgressBar: true,
+                  showConfirmButton: false,
+             });
+         </script>
+         {% endif %}
+  {% endfor %}
+{% endif %}
+{% block js %}
+<script>
+    function cancelarRegistro(){
+    Swal.fire({
+      title: "Está seguro(a) que desea cancelar el registro",
+      icon: "question",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Si"
+    })
+    .then(function(result) {
+        if(result.isConfirmed){
+          window.location.href = "http://127.0.0.1:8000/usuarios/";
+        }
+    })
+  }
+</script>
+{% endblock %}
+{% endblock %}
