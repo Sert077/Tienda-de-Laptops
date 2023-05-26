@@ -117,7 +117,9 @@ def reporteVentas(request):
 
         context = {
             'ventas': ventas_suma,
-            'no_ventas': no_ventas
+            'no_ventas': no_ventas,
+            'fecha_inicio': fecha_inicio,
+            'fecha_fin': fecha_fin
         }
     else:
         context = {}
