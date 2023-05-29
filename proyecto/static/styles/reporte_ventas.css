@@ -62,7 +62,7 @@ input {
 
 .crear-grafico {
     float: right;
-    background-color: #243757;
+    background-color: #314755;
     border: none;
     padding: 10px;
     color: #fff;
@@ -116,7 +116,7 @@ form{
     height: 40px;
     margin-left: 50px;
     color: #fff;
-    background-color: #243757;
+    background-color: #314755;
     margin-top: 10px;
 }
 input{

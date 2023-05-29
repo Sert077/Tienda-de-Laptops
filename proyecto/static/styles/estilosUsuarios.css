@@ -41,10 +41,13 @@ td{
 button{
     width: 140px;
     height: 40px;
-    background-color: #243757;
+    background-color: #314755;
     color: white;
     border: 0px;
     font-weight: bold;
     font-size: 15px;
-    border-radius: 10px;
+}
+.btn-eliminar{
+    align-items: center;
+    text-align: center;
 }

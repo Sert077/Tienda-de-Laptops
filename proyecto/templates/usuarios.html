@@ -18,14 +18,14 @@
                     <th>Nomb. EMPLEADO</th>
                     <th>NOMBRE USUARIO</th>
                     <th>Ci EMPLEADO</th>
-                    <th>ELIMINAR</th>
+                    <th class="btn-eliminar">ELIMINAR</th>
                 </tr>
                 {% for usuario in usuarios %}
                     <tr>
                         <td class="tdd">{{ usuario.nombemp }}</td>
                         <td class="tdd">{{ usuario.usuario }}</td>
                         <td class="tdd">{{ usuario.ciemp }}</td>
-                        <td class="tdd">
+                        <td class="tdd btn-eliminar">
                             <form id="form-{{ usuario.id }}" action="{% url 'eliminarUsuario' usuario.id %}" method="POST">
                                 {% csrf_token %}
             
