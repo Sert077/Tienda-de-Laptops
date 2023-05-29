@@ -8,10 +8,10 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<section class="scroll-container">
+<section class="scroll-container" >
     <h1>Registrar nuevo empleado</h1>
-    <div class="line"></div>
-    <form action="{% url 'registro' %}" method="POST">
+    <div class="line" ></div>
+    <form action="{% url 'registro' %}" method="POST" >
       {% csrf_token %}
       <div class="row" style="margin: 5px;">
 
@@ -128,7 +128,7 @@
     </div>
 
         <input class="cancelar" type="button" value="Cancelar" onclick="cancelarRegistro()">
-        <input class="registrar" type="submit" value="Registrar">
+        <input class="registrar" type="submit" value="Registrar" onclick="verificarContra()">
         
 
     </form>
@@ -165,6 +165,23 @@
         }
     })
   }
+
+    function verificarContra(){
+      
+      let password1 = document.getElementsByName("password")[0].value;
+      let password2= document.getElementsByName("confirmar_password")[0].value;
+      if(password1!=password2){
+        alert("las contraseñas no coinciden");
+        Swal.fire({
+        title: "las contraseñas no coinciden",
+        icon: "warning",
+        
+        confirmButtonText: "vale"
+        })
+        console.log('se verifico el mensaje')
+      }  
+    }
 </script>
 {% endblock %}
 {% endblock %}
+
