@@ -342,12 +342,25 @@
                         >
                           CANCELAR
                         </button>
+                        <script>
+                          function prepararImpresion(){
+                            Swal.fire({
+                                      title: "La impresion ha sido realizada con éxito",
+                                        icon: "info",
+                                        timer: 10000,
+                                        timerProgressBar: true,
+                                        showConfirmButton: false,
+                            })
+                            
+                            imprimir()
+                          }
+                        </script>
                         <button
                           class="btn btn-primary js-tooltip"
                           id="btnGuardar"
                           title=""
                           style="background-color: #243757;margin-right: 40px;"
-                          onclick="imprimir()"
+                          onclick="prepararImpresion()"
                         >
                         IMPRIMIR FACTURA      
                         </button>

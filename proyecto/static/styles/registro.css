@@ -84,3 +84,8 @@ form {
   font-size: 12px;
   margin-top: 5px;
 }
+
+.scroll-container {
+    max-height: 600px;
+    overflow-y: auto;
+}

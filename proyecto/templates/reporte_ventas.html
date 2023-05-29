@@ -19,9 +19,9 @@
     <div class="fechas">
         <form action="#" id="fecha-form">
             <span class="span">Fecha Inicio</span>
-            <input class="btn" type="date" name="fecha_inicio">
+            <input class="btn" type="date" name="fecha_inicio" value="{{ fecha_inicio|default_if_none:'' }}">
             <span class="span">Fecha Fin</span>
-            <input class="btn" type="date" name="fecha_fin">
+            <input class="btn" type="date" name="fecha_fin" value="{{ fecha_fin|default_if_none:'' }}">
             <input class="aceptar" type="submit" value="Aceptar">
         </form>
         <p class="error-message" id="error-message" style="display: none;">Introducir fechas válidas por favor.</p>

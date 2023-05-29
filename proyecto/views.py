@@ -20,6 +20,18 @@ def index(request):
     return render(request, "index.html")
 
 @login_required
+@user_passes_test(lambda u: u.is_superuser, login_url='/403/')        
+def usuarios(request):
+    usuarios = registrar_usuario.objects.all()
+    return render(request, "usuarios.html",{'usuarios':usuarios})
+
+
+@login_required
+def factura(request):
+    return render(request, "factura.html")
+
+@user_passes_test(lambda u: u.is_superuser, login_url='/403/')        
+
 def usuarios(request):
     usuarios = registrar_usuario.objects.all()
     return render(request, "usuarios.html",{'usuarios':usuarios})
@@ -38,15 +50,16 @@ def registro(request):
         if registrar_usuario.objects.filter(nombemp=nombemp).exists():
             errors_dict['nombemp'] = 'El nombre de empleado ya está registrado.'
         if registrar_usuario.objects.filter(ciemp=ciemp).exists():
-            errors_dict['ciemp'] = 'El CI ya está registrado.'
+            errors_dict['ciemp'] = 'El CI proporcionado ya está asociado con una cuenta existente.'
         if registrar_usuario.objects.filter(usuario=usuario).exists():
-            errors_dict['usuario'] = 'El nombre de usuario ya está registrado.'
+            errors_dict['usuario'] = 'El nombre de usuario proporcionado ya está asociado con una cuenta existente.'
 
         if password != confirmar_contraseña:
-            errors_dict['password'] = 'La contraseña y la confirmación de contraseña no coinciden.'
+            errors_dict['password'] = 'La confirmación de contraseña no coincide con la contraseña ingresada.'
 
         if len(errors_dict) == 0:
             nuevo_usuario = registrar_usuario.objects.create(nombemp=nombemp, ciemp=ciemp, usuario=usuario, password=password)
+            nuevo_user = User.objects.create_user(username=usuario, password=password)
             nuevo_usuario.save()
             messages.success(request, f"¡El usuario ha sido registrada exitosamente!")
             return redirect('registro')
@@ -71,7 +84,6 @@ def registroVentas(request):
     })
 
 @login_required
-
 def registroFacturas(request):
     facturas = crear_factura.objects.all()
     return render(request, "registroFacturas.html",{
@@ -80,6 +92,7 @@ def registroFacturas(request):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_superuser, login_url='/403/')
 def reporteVentas(request):
     fecha_inicio = request.GET.get('fecha_inicio')
     fecha_fin = request.GET.get('fecha_fin')
@@ -104,7 +117,9 @@ def reporteVentas(request):
 
         context = {
             'ventas': ventas_suma,
-            'no_ventas': no_ventas
+            'no_ventas': no_ventas,
+            'fecha_inicio': fecha_inicio,
+            'fecha_fin': fecha_fin
         }
     else:
         context = {}
@@ -132,6 +147,7 @@ def informacionLaptop(request, id):
     })
 
 @login_required
+@user_passes_test(lambda u: u.is_superuser, login_url='/403/')        
 def modificarLaptop(request, id):
     if request.method == 'GET':
         laptop = Registrar_Laptop.objects.get(id = id)
@@ -291,14 +307,11 @@ def signout(request):
     logout(request)
     return redirect("index")
 
-@login_required
-def factura(request):
-    return render(request,"factura.html")
+
 
 @login_required
+@user_passes_test(lambda u: u.is_superuser, login_url='/403/')
 def eliminarUsuario(request, id):
     usuario = get_object_or_404(registrar_usuario, id=id)
     usuario.delete()
-    messages.success(request, f"El usuario {usuario.usuario} ha sido eliminado exitosamente.")
     return redirect("usuarios")
-

@@ -1,6 +1,7 @@
 //Variable que guarda la cantidad de leyendas a insertar en el gráfico
 let cantidadLeyendas;
 var arregloDatos = [];
+var tieneDatosValidos = false;
 
 //Función que cargar el gràfico de Google
 function cargarGrafico() {
@@ -33,6 +34,7 @@ function drawChart() {
         //voy agregando los pares al arreglo arreglo arregloDatos.
         t = [datos[i].value, parseInt(datos[i + 1].value)];
         arregloDatos.push(t);
+        tieneDatosValidos = true;
     }
 
     //Genero la tabla que contiene los datos con el arreglo arregloDatos
@@ -51,6 +53,17 @@ function drawChart() {
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
     } else {
+        if (!tieneDatosValidos) {
+            var piechartElement = document.getElementById('piechart');
+            piechartElement.innerHTML = 'No data';
+            piechartElement.style.display = 'flex';
+            piechartElement.style.alignItems = 'center';
+            piechartElement.style.justifyContent = 'center';
+            piechartElement.style.width = '700px';
+            piechartElement.style.height = '500px';
+            piechartElement.style.fontSize = '13px';
+            return;
+        }
         var chart = new google.visualization.ColumnChart(document.getElementById('piechart'));
         chart.draw(data, options);
     }
