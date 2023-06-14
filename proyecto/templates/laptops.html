@@ -1,27 +1,79 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'styles/busqueda.css' %}">
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
+  
+
+  
+  <div class="box">
+    <div class="container-4">
+      <form method="get">
+        <input type="text" id="search" placeholder="BUSCAR" name="buscar" value = "{{request.GET.buscar}}" maxlength="20"
+                        pattern="[a-zA-Z]+" spellcheck = "false" autocomplete="off"/>
+      <button class="icon"></button>
+      </form>  
+    </div>
+  </div>
+  
+
 {% if messages %}
-    {% for message in messages %}
-        <script>
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+         
+         <script>
+           console.log('verificar el mensaej')
+             Swal.fire({
 
-          console.log('verificar el mensaej')
-            Swal.fire({
+                  title: "Se añadió correctamente la Laptop",
+                  icon: "success",
+                  timer: 3000,
+                  timerProgressBar: true,
+                  showConfirmButton: false,
+             });
+         </script>
+    {% elif message.tags == 'error' %}
+    <script>
+        Swal.fire({
 
-                title: "Se añadió correctamente la Laptop",
-                icon: "success",
-                timer: 3000,
-                timerProgressBar: true,
-                showConfirmButton: false,
-            });
-        </script>
-    {% endfor %}
+             title: "No se encontró ese resultado",
+             icon: "error",
+             timer: 3000,
+             timerProgressBar: true,
+             showConfirmButton: false,
+        });
+    </script>
+    {% elif message.tags == 'warning' %}
+    <script>
+      Swal.fire({
+        title: "Confirmar venta",
+        icon: "question",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        reverseButtons:true
+      })
+      .then(function(result) {
+        if(result.isConfirmed){
+          Swal.fire({
+          title: "¡La venta ha sido registrada exitosamente!",
+          icon: "success",
+          timer: 9000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          });
+          window.location.href = "http://127.0.0.1:8000/laptops/";
+        }
+      })
+        
+    </script>
+    {% endif %}
+  {% endfor %}
 {% endif %}
-
 
 {% block js %}
 <script>
@@ -48,41 +100,72 @@
       }
     })
   }
+  function borrarMensajesError(){
+    var invalidFields = document.querySelectorAll(".is-invalid");
+        invalidFields.forEach(function(field) {
+          field.classList.remove("is-invalid");
+    });
+      var myButton = document.getElementById("botonGuardar");
+      myButton.click();
+  }
 </script>
 {% endblock %}
 
-
-<section class="contenido aliniado">
-      {% for laptop, ruta in laptops_rutas %}
-      <div class="contenedor-foto">
-        <a style="color: black; text-decoration: none;" href="{% url 'informacionLaptop' laptop.id %}" class="descripcion">{{ laptop.nombre }}</a>
-        <a href="{% url 'informacionLaptop' laptop.id %}">
-            <img src="{{ ruta }}" width="200px" height="200px" alt="" />
-        </a>
-        <div style="background-color: #DaD5B7;" >
-            <h6 class="descripcion">Marca:{{ laptop.marca }}</h6>
-            <h6 class="descripcion">Modelo: {{ laptop.modelo }}</h6>
-            <h6 class="precio">Precio: {{ laptop.precio }} bs</h6>
-            <h6 class="precio"> Stock: {{ laptop.stock }}</h6>
+<div class="ciclo" style="position: inherit; padding-top: 35px;">
+  <section class="guardaLaptops" >
+    {% for laptop, ruta in laptops_rutas %}
+    <div class="contenedor-foto">
+      <a style="color: black; text-decoration: none;" href="{% url 'informacionLaptop' laptop.id %}"
+        class="descripcion">{{ laptop.nombre }}</a>
+        <div style="max-height: 100%;">
+          <a href="{% url 'informacionLaptop' laptop.id %}">
+            <img src="{{ ruta }}" style="max-height: 100%;width: auto;" width="150px" height="150px" alt="" />
+          </a>
         </div>
+      <div style="background-color: #DaD5B7;">
+        <h6 class="descripcion" style="font-size: 18px;width: 100%;">Marca:{{ laptop.marca }}</h6>
+        <h6 class="descripcion" style="font-size: 18px;width: 100%;">Modelo: {{ laptop.modelo }}</h6>
+        <h6 class="precio" style="font-size: 18px;width: 100%;">Precio: {{ laptop.precio }} bs</h6>
+        <h6 class="precio" style="font-size: 18px;width: 100%;"> Stock: {{ laptop.stock }}</h6>
+      </div>
+      <div class="contenedor_botones">
+        {% if request.user.is_superuser %}
+        <button class="hh" style="background-color: #314755; border: 0px; border-radius: 10px; width: 100px;">
+          <a style="color: white;font-weight: bolder;"
+            href="{% url 'modificarLaptop' laptop.id %}">Editar
+          </a></button>
+          {% endif %}
+        <button class="hh" style="background-color: #56FE53; border: 0px; border-radius: 10px; width: 100px; ">
+          <a style="color: rgb(2, 2, 2); font-weight: bolder;"
+            href="{% url 'venderLaptop' laptop.id %}">Vender
+          </a></button>
 
       </div>
-      {% endfor %} 
-      {% if request.user.is_superuser %}
-  <div class="boton_float">
-    <a href="#" id="myButton" data-toggle="modal" data-target="#myModal">
-      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-plus-circle"
-        viewBox="0 0 16 16" style="color:#314755 ; position: fixed; top:90%; left: 95%;">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-      </svg>
-    </a>
-  </div>
-  {% endif %}
-  
+      
+
+    </div>
+    {% endfor %} 
+    {% if request.user.is_superuser %}
+      <div class="boton_float">
+        <a href="#" id="myButton" data-toggle="modal" data-target="#myModal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-plus-circle"
+            viewBox="0 0 16 16" style="color:#314755 ; position: fixed; top:90%; left: 95%;">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+
 
 </section>
+
+</div>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
+
+
+    
     <div class="modal-content" style="width: 100%;margin-top: 10%;">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Datos de nuevo equipo</h4>
@@ -110,7 +193,7 @@
                         title="Por favor ingrese un modelo"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_\.,]+"
+                        pattern="[a-zA-Z0-9\-\/\(\)_\.,]+(\s[a-zA-Z0-9\-\/\(\)_\.,]+)*"
                         value=""
                         required
                         maxlength="20"
@@ -133,7 +216,7 @@
                         title="Por favor ingrese una marca"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s]+"
+                        pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                         value=""
                         required
                         maxlength="20"
@@ -157,7 +240,7 @@
                         title="Por favor ingrese un nombre"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                        pattern="[a-zA-Z0-9]+( [a-zA-Z0-9]+)*"
                         value=""
                         required
                         maxlength="20"
@@ -243,11 +326,11 @@
                         title="Por favor ingrese el lenguaje del teclado de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_\.,ñÑ]+"
+                        pattern="[a-zA-Z0-9\-\/\(\)_\.,ñÑ]+( [a-zA-Z0-9\-\/\(\)_\.,ñÑ]+)*"
                         value=""
                         required
                         maxlength="10"
-                        minlength="5"
+                        minlength="4"
                         oninvalid="this.classList.add('is-invalid')"
                       />
                       <div class="invalid-feedback">
@@ -267,7 +350,7 @@
                         title="Por favor ingrese el procesador de la laptop"
                         class="form-control"
                         type="text"
-                        pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                        pattern="[a-zA-Z0-9\-\/\(\)_\s]([a-zA-Z0-9\-\/\(\)_\s]*[a-zA-Z0-9\-\/\(\)_\s])?"
                         value=""
                         required
                         maxlength="25"
@@ -327,7 +410,7 @@
                           title="Por favor ingrese el color de la laptop"
                           class="form-control"
                           type="text"
-                          pattern="[a-zA-Z0-9\s]+"
+                          pattern="[a-zA-Z0-9]+([ ][a-zA-Z0-9]+)*"
                           value=""
                           required
                           maxlength="15"
@@ -389,7 +472,7 @@
                           title="Por favor ingrese la grafica de la laptop"
                           class="form-control"
                           type="text"
-                          pattern="[a-zA-Z0-9\s\-\/\(\)_]+"
+                          pattern="[a-zA-Z0-9]+(?:[\s\-\/\(\)_][a-zA-Z0-9]+)*"
                           value=""
                           required
                           maxlength="25"
@@ -437,28 +520,24 @@
                           name="imagen_1"
                           type="file"
                           accept=".jpg,.png"
-                          required onchange="validar1()"
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <input
                           name="imagen_2"
                           type="file"
                           accept=".jpg,.png"                         
-                          required onchange="validar2()"
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <input
                           name="imagen_3"
                           type="file"
                           accept=".jpg,.png"
-                          required onchange="validar3()"
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <input
                           name="imagen_4"
                           type="file"
                           accept=".jpg,.png"
-                          required onchange="validar4()"
                           oninvalid="this.classList.add('is-invalid')"
                         />
                         <div class="invalid-feedback">
@@ -473,7 +552,6 @@
                       <button
                         class="btn btn-default"
                         title=""
-                        
                         style="background-color: #243757;color: white;"
                         type="button"
                         onclick="cancelarRegistro()"
@@ -483,7 +561,10 @@
                       <button
                         class="btn btn-primary js-tooltip"
                         title=""
+                        id="botonGuardar"
                         style="background-color: #243757;"
+                        onclick="borrarMensajesError()"
+
                       >
                         GUARDAR
                       </button>
@@ -501,7 +582,9 @@
   </div>
 </div>
 
+<script>
+  const nav = document.querySelector('nav');
+  nav.style.height = '100vw';
+</script>
 
       {% endblock %}
- 
-

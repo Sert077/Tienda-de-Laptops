@@ -6,14 +6,14 @@
 header{
     display: flex;
     background-color: #314755;
-    height: 103px;
+    height: 100px;
     align-items: center;
     justify-content: space-between;
 }
 
 .sesion span{
     font-size: 20px;
-    padding: 5px;
+    padding: 8px;
 }
 .sesion{
     display: flex;
@@ -24,10 +24,6 @@ span{
     padding-left: 60px;
     color: white;
     font-size: 28px;
-}
-nav{
-    background-color: #314755;
-    width: 121px;
 }
 ul{
     display: flex;
@@ -42,10 +38,14 @@ li{
     justify-content: center;
     padding: 10px; 
 }
+
 li:hover{
-    background-color: #dad5b7;
-    width: 135px;
+    background-color: #dad5b7 !important;
+    width: 156px;
 }
+
+
+
 .sesion a{
     text-decoration: none;
 }
@@ -64,13 +64,6 @@ i{
     padding: 0px;
 }
 
-header{
-    display: flex;
-    background-color: #314755;
-    height: 103px;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .sesion span{
     font-size: 20px;
@@ -91,16 +84,9 @@ span{
 nav{
     background-color: #314755;
     width: 10%;
-    height: 140vh;
-    
-   
+    height: 110%;
 }
 
-.contenedor1{
-    display: flex;
-    justify-content: space-between;
-    height: 87vh;
-}
 ul{
     display: flex;
     align-items: center;
@@ -157,9 +143,8 @@ i{
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    left: 130px;
-    top: 170px;
+    position: initial;
+    padding: 0px 5px 0px 5px;
   }
   
   .contenedor-imagenes-secundarias {
@@ -180,3 +165,48 @@ i{
     height: 350px;
     margin-bottom: 10px;
   }
+  .contenedor_botones{
+    display: flex;
+    justify-content: space-between;
+  }
+
+h2{
+    stroke: #000000 solid;
+    text-align: center;
+    font-weight: bold;
+}
+
+.modelo{
+    width: 201px;
+}
+.marca{
+    width: 166px;
+}
+.nombre{
+    width: 255px;   
+}
+.ci{
+    width: 170px;
+}
+.precio{
+   width: 140px; 
+}
+.numVenta{
+    width: 137px;
+}
+.cant{
+    width: 100px;
+}
+.precioU{
+    width: 150px;
+}
+.precioT{
+    width: 150px;
+}
+.fecha{
+    width: 150px;  
+}
+
+
+
+  
